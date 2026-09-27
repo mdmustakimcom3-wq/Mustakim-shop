@@ -1,0 +1,4895 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mustakim Shop — Premium Online Shopping</title>
+
+<meta name="description" content="Mustakim Shop — নারী, পুরুষ ও শিশুদের জন্য ফ্যাশন, অ্যাক্সেসরিজ ও প্রয়োজনীয় পণ্য।">
+<meta name="theme-color" content="#ff6500">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+/* =========================================================
+   MUSTAKIM SHOP — PREMIUM PRODUCT SYSTEM
+========================================================= */
+.hero-mini-stats.premium-quality-only{display:flex!important;align-items:center;margin-top:18px;}
+.hero-mini-stats.premium-quality-only>div{min-width:92px;padding:10px 14px;border-radius:15px;}
+
+.products-grid{
+    display:grid!important;
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+    gap:18px!important;
+    align-items:stretch!important;
+}
+.premium-product-card{
+    min-width:0!important;
+    width:100%!important;
+    background:#fff!important;
+    border:1px solid #eeeeF2!important;
+    border-radius:18px!important;
+    overflow:hidden!important;
+    box-shadow:0 6px 22px rgba(20,20,30,.07)!important;
+    transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease!important;
+}
+.premium-product-card:hover{
+    transform:translateY(-5px);
+    border-color:#ffd2e3!important;
+    box-shadow:0 15px 35px rgba(25,25,40,.12)!important;
+}
+.premium-product-card .product-card-image{
+    height:245px!important;
+    background:#f8f8fa!important;
+    position:relative!important;
+}
+.premium-product-card .product-card-image img{
+    width:100%!important;height:100%!important;object-fit:cover!important;
+    transition:transform .45s ease!important;
+}
+.premium-product-card:hover .product-card-image img{transform:scale(1.035);}
+.premium-image-overlay{
+    position:absolute;left:12px;right:12px;bottom:12px;
+    display:flex;gap:8px;opacity:0;transform:translateY(8px);
+    transition:.25s ease;pointer-events:none;
+}
+.premium-product-card:hover .premium-image-overlay{opacity:1;transform:translateY(0);pointer-events:auto;}
+.premium-image-overlay button{
+    width:38px;height:38px;border:1px solid rgba(255,255,255,.8);
+    border-radius:11px;background:rgba(255,255,255,.94);font-size:16px;cursor:pointer;
+    box-shadow:0 6px 16px rgba(0,0,0,.1);
+}
+.premium-product-content{padding:13px 13px 14px!important;}
+.premium-card-topline{display:flex;align-items:center;justify-content:space-between;gap:7px;margin-bottom:6px;}
+.premium-card-topline .product-category-label{font-size:9px!important;font-weight:800!important;color:#8b8e97!important;}
+.premium-size-hint{font-size:8px;font-weight:800;color:#ff2f78;background:#fff0f6;padding:4px 6px;border-radius:7px;white-space:nowrap;}
+.premium-product-content h3{font-size:13px!important;line-height:1.45!important;min-height:38px!important;margin:0!important;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;cursor:pointer;}
+.premium-rating{display:flex!important;align-items:center;gap:6px;margin-top:7px!important;}
+.premium-rating span{font-size:11px!important;letter-spacing:.5px;color:#f5a400!important;}
+.premium-rating small{font-size:9px!important;color:#777!important;}
+.premium-rating small i{font-style:normal;color:#999;}
+.premium-price-row{display:flex!important;align-items:baseline!important;gap:8px!important;margin-top:7px!important;}
+.premium-price-row strong{font-size:19px!important;font-weight:900!important;color:#ff2f78!important;}
+.premium-price-row del{font-size:10px!important;color:#a5a7ad!important;}
+.premium-stock-row{display:flex;justify-content:space-between;align-items:center;gap:5px;margin:9px 0 10px;padding-top:8px;border-top:1px solid #f0f0f3;}
+.premium-stock{font-size:9px;font-weight:800;}
+.premium-stock.in{color:#218838;}
+.premium-stock.out{color:#dc3545;}
+.premium-delivery{font-size:8px;color:#888;font-weight:700;}
+.premium-add-cart{width:100%!important;min-height:44px!important;border:0!important;border-radius:12px!important;background:linear-gradient(135deg,#ff5aa5,#ff2f78)!important;color:#fff!important;font-size:12px!important;font-weight:900!important;box-shadow:0 7px 18px rgba(255,47,120,.2)!important;}
+.premium-add-cart:hover{transform:translateY(-2px);box-shadow:0 11px 25px rgba(255,47,120,.3)!important;}
+
+@media(max-width:1200px){.products-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:15px!important;}.premium-product-card .product-card-image{height:230px!important;}}
+@media(max-width:900px){.products-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:13px!important;}.premium-product-card .product-card-image{height:210px!important;}}
+@media(max-width:600px){
+    .products-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;}
+    .premium-product-card{border-radius:13px!important;}
+    .premium-product-card .product-card-image{height:175px!important;}
+    .premium-product-content{padding:9px!important;}
+    .premium-product-content h3{font-size:11px!important;min-height:32px!important;}
+    .premium-card-topline{margin-bottom:4px;}
+    .premium-card-topline .product-category-label{font-size:7px!important;}
+    .premium-size-hint{font-size:7px;padding:3px 4px;}
+    .premium-rating{margin-top:5px!important;gap:4px;}
+    .premium-rating span{font-size:9px!important;}
+    .premium-rating small{font-size:7px!important;}
+    .premium-price-row{margin-top:5px!important;gap:5px!important;}
+    .premium-price-row strong{font-size:15px!important;}
+    .premium-price-row del{font-size:8px!important;}
+    .premium-stock-row{margin:6px 0 7px;padding-top:6px;}
+    .premium-stock{font-size:7px;}
+    .premium-delivery{font-size:6.5px;}
+    .premium-add-cart{min-height:39px!important;font-size:10px!important;border-radius:9px!important;}
+    .premium-image-overlay{display:none!important;}
+}
+@media(max-width:380px){.products-grid{gap:8px!important;}.premium-product-card .product-card-image{height:155px!important;}}
+</style>
+
+<style>
+
+/* =========================================================
+   MUSTAKIM SHOP — FASHION MARKETPLACE PRODUCT CARDS
+========================================================= */
+.products-grid{
+    display:grid!important;
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+    gap:16px!important;
+    align-items:start!important;
+}
+.yamshi-product-card{
+    min-width:0!important;
+    width:100%!important;
+    background:#fff!important;
+    border:1px solid #ececf0!important;
+    border-radius:10px!important;
+    overflow:hidden!important;
+    box-shadow:0 2px 10px rgba(20,20,30,.055)!important;
+    transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease!important;
+}
+.yamshi-product-card:hover{
+    transform:translateY(-3px);
+    border-color:#e4e4e8!important;
+    box-shadow:0 10px 24px rgba(20,20,30,.10)!important;
+}
+.yamshi-product-image{
+    height:270px!important;
+    background:#f7f7f7!important;
+    position:relative!important;
+    cursor:pointer!important;
+    overflow:hidden!important;
+}
+.yamshi-product-image img{
+    width:100%!important;
+    height:100%!important;
+    object-fit:cover!important;
+    display:block!important;
+    transition:transform .45s ease!important;
+}
+.yamshi-product-card:hover .yamshi-product-image img{transform:scale(1.035);}
+.yamshi-discount{
+    position:absolute;left:9px;top:9px;
+    background:#ff2f78;color:#fff;
+    padding:5px 7px;border-radius:5px;
+    font-size:10px;font-weight:900;
+}
+.yamshi-badge{
+    position:absolute;left:9px;bottom:9px;
+    background:rgba(255,255,255,.95);color:#222;
+    padding:5px 8px;border-radius:5px;
+    font-size:9px;font-weight:800;
+}
+.yamshi-wishlist{
+    position:absolute;right:9px;top:9px;
+    width:32px;height:32px;border:0;border-radius:50%;
+    background:rgba(255,255,255,.94);color:#777;
+    font-size:18px;line-height:32px;text-align:center;
+    cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.08);
+}
+.yamshi-wishlist.active{color:#ff2f78;}
+.yamshi-product-content{padding:10px 11px 11px!important;}
+.yamshi-rating{display:flex;align-items:center;gap:5px;height:18px;}
+.yamshi-rating span{font-size:10px;color:#f5a400;letter-spacing:.3px;white-space:nowrap;}
+.yamshi-rating small{font-size:8px;color:#999;white-space:nowrap;}
+.yamshi-product-content h3{
+    margin:4px 0 6px!important;
+    font-size:12px!important;
+    line-height:1.45!important;
+    font-weight:700!important;
+    color:#25262a!important;
+    min-height:35px!important;
+    display:-webkit-box!important;
+    -webkit-line-clamp:2!important;
+    -webkit-box-orient:vertical!important;
+    overflow:hidden!important;
+    cursor:pointer!important;
+}
+.yamshi-price-row{display:flex;align-items:center;gap:7px;min-height:27px;}
+.yamshi-price-row strong{font-size:18px!important;font-weight:900!important;color:#ff2f78!important;}
+.yamshi-price-row del{font-size:9px;color:#999;}
+.yamshi-price-row em{font-size:8px;font-style:normal;font-weight:900;color:#ff2f78;background:#fff0f5;padding:3px 4px;border-radius:4px;}
+.yamshi-size-area{margin-top:7px;padding-top:7px;border-top:1px solid #f0f0f2;}
+.yamshi-size-area>span{display:block;font-size:9px;font-weight:800;color:#555;margin-bottom:5px;}
+.yamshi-size-list{display:flex;flex-wrap:wrap;gap:4px;}
+.yamshi-size-list button{
+    min-width:28px;height:25px;padding:0 6px;
+    border:1px solid #dedee3;border-radius:5px;background:#fff;
+    color:#333;font-size:9px;font-weight:800;cursor:pointer;
+}
+.yamshi-size-list button:hover{border-color:#ff2f78;color:#ff2f78;background:#fff7fa;}
+.yamshi-meta{display:flex;justify-content:space-between;gap:4px;margin-top:8px;color:#888;font-size:8px;font-weight:700;white-space:nowrap;}
+.yamshi-meta span:first-child{color:#4d8a5a;overflow:hidden;text-overflow:ellipsis;}
+.yamshi-cart-btn{
+    width:100%!important;height:40px!important;margin-top:9px!important;
+    border:1px solid #ff2f78!important;border-radius:7px!important;
+    background:#fff!important;color:#ff2f78!important;
+    font-size:11px!important;font-weight:900!important;
+    cursor:pointer!important;transition:.2s ease!important;
+}
+.yamshi-cart-btn:hover{background:#ff2f78!important;color:#fff!important;transform:translateY(-1px);}
+.yamshi-cart-btn:disabled{opacity:.45!important;cursor:not-allowed!important;transform:none!important;}
+@media(max-width:1200px){.products-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:14px!important;}.yamshi-product-image{height:245px!important;}}
+@media(max-width:900px){.products-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;}.yamshi-product-image{height:220px!important;}}
+@media(max-width:600px){
+    .products-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important;}
+    .yamshi-product-card{border-radius:8px!important;}
+    .yamshi-product-image{height:185px!important;}
+    .yamshi-product-content{padding:8px!important;}
+    .yamshi-rating span{font-size:8px!important;}
+    .yamshi-rating small{font-size:7px!important;}
+    .yamshi-product-content h3{font-size:10.5px!important;min-height:31px!important;margin:3px 0 5px!important;}
+    .yamshi-price-row strong{font-size:15px!important;}
+    .yamshi-price-row del{font-size:8px!important;}
+    .yamshi-price-row em{font-size:7px!important;}
+    .yamshi-size-area{margin-top:6px;padding-top:6px;}
+    .yamshi-size-area>span{font-size:8px!important;}
+    .yamshi-size-list{gap:3px;}
+    .yamshi-size-list button{min-width:25px;height:23px;font-size:8px;}
+    .yamshi-meta{font-size:7px!important;margin-top:6px;}
+    .yamshi-cart-btn{height:36px!important;margin-top:7px!important;font-size:10px!important;border-radius:6px!important;}
+}
+@media(max-width:380px){.products-grid{gap:7px!important;}.yamshi-product-image{height:165px!important;}}
+
+</style>
+
+
+<style>
+/* MUSTAKIM SHOP — PREMIUM CATEGORY STRIP */
+.category-grid{
+    display:grid!important;
+    grid-template-columns:repeat(6,minmax(0,1fr))!important;
+    gap:14px!important;
+}
+.category-card{
+    border:1px solid #ececf1!important;
+    background:#fff!important;
+    border-radius:16px!important;
+    padding:12px!important;
+    box-shadow:0 6px 18px rgba(20,20,30,.055)!important;
+    transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease!important;
+}
+.category-card:hover{
+    transform:translateY(-3px)!important;
+    box-shadow:0 12px 28px rgba(20,20,30,.10)!important;
+    border-color:#ffd1df!important;
+}
+.category-image{
+    height:92px!important;
+    border-radius:13px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    font-size:38px!important;
+}
+.shoes-category{background:linear-gradient(135deg,#f3f7ff,#eef2ff)!important;}
+@media(max-width:1100px){.category-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;}}
+@media(max-width:600px){
+    .category-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;}
+    .category-card{padding:7px!important;border-radius:12px!important;}
+    .category-image{height:64px!important;font-size:27px!important;border-radius:9px!important;}
+    .category-card strong{font-size:11px!important;}
+    .category-card span{font-size:8px!important;}
+}
+</style>
+
+<style>
+/* ================= ADMIN PRODUCT PANEL ================= */
+.admin-open-btn{display:none !important;position:fixed;right:18px;bottom:18px;z-index:9998;border:0;border-radius:999px;padding:12px 16px;background:linear-gradient(135deg,#111827,#ff2f7d);color:#fff;font-weight:800;box-shadow:0 12px 30px rgba(17,24,39,.22);cursor:pointer}
+.admin-modal{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;background:rgba(8,12,20,.68);backdrop-filter:blur(8px);padding:18px}
+.admin-modal.active{display:flex}
+.admin-panel{width:min(980px,100%);max-height:92vh;overflow:auto;background:#fff;border-radius:22px;box-shadow:0 25px 80px rgba(0,0,0,.28);padding:22px}
+.admin-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}.admin-head h2{margin:0}.admin-close{border:0;background:#f1f2f5;width:38px;height:38px;border-radius:50%;font-size:20px;cursor:pointer}
+.admin-login{max-width:420px;margin:30px auto}.admin-field{margin-bottom:12px}.admin-field label{display:block;font-size:12px;font-weight:800;margin-bottom:6px;color:#333}.admin-field input,.admin-field select,.admin-field textarea{width:100%;box-sizing:border-box;border:1px solid #e2e4ea;border-radius:11px;padding:11px 12px;font:inherit;outline:none}.admin-field input:focus,.admin-field select:focus,.admin-field textarea:focus{border-color:#ff2f7d;box-shadow:0 0 0 3px rgba(255,47,125,.08)}
+.admin-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.admin-full{grid-column:1/-1}.admin-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.admin-primary,.admin-secondary,.admin-danger{border:0;border-radius:11px;padding:11px 15px;font-weight:800;cursor:pointer}.admin-primary{background:#ff2f7d;color:#fff}.admin-secondary{background:#f1f2f5;color:#222}.admin-danger{background:#fff0f2;color:#d71945}.admin-note{font-size:11px;color:#777;line-height:1.6;background:#fafafa;border-radius:12px;padding:10px;margin-bottom:14px}.admin-list{margin-top:22px;border-top:1px solid #eee;padding-top:18px}.admin-product-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #eee}.admin-product-row img{width:58px;height:58px;border-radius:10px;object-fit:cover;background:#f4f4f4}.admin-product-info{flex:1;min-width:0}.admin-product-info strong{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.admin-product-info small{color:#777}.admin-product-actions{display:flex;gap:6px}.admin-product-actions button{border:0;border-radius:8px;padding:7px 9px;font-size:11px;font-weight:800;cursor:pointer}.admin-edit{background:#f1f5ff}.admin-remove{background:#fff0f2;color:#d71945}
+@media(max-width:650px){.admin-grid{grid-template-columns:1fr}.admin-full{grid-column:auto}.admin-panel{padding:16px;border-radius:16px}.admin-open-btn{right:12px;bottom:12px}.admin-product-row{align-items:flex-start}.admin-product-actions{flex-direction:column}}
+</style>
+
+</head>
+
+<body>
+
+<!-- =========================================================
+     TOP OFFER BAR
+========================================================= -->
+<div class="offer-marquee">
+    <div class="offer-track">
+
+        <div class="offer-group">
+            <span>🎁 ২০০টি পণ্য বিক্রি হলে আমাদের ক্রেতাদের মধ্য থেকে একজন ভাগ্যবান ক্রেতাকে বিশেষ উপহার দেওয়া হবে!</span>
+            <span>🛍️ Mustakim Shop থেকে কেনাকাটা করুন এবং বিশেষ উপহার জেতার সুযোগ পান!</span>
+            <span>❤️ আপনার কেনাকাটা আমাদের ২০০ পণ্য বিক্রির লক্ষ্যে পৌঁছাতে সাহায্য করবে!</span>
+        </div>
+
+        <div class="offer-group">
+            <span>🎁 ২০০টি পণ্য বিক্রি হলে আমাদের ক্রেতাদের মধ্য থেকে একজন ভাগ্যবান ক্রেতাকে বিশেষ উপহার দেওয়া হবে!</span>
+            <span>🛍️ Mustakim Shop থেকে কেনাকাটা করুন এবং বিশেষ উপহার জেতার সুযোগ পান!</span>
+            <span>❤️ আপনার কেনাকাটা আমাদের ২০০ পণ্য বিক্রির লক্ষ্যে পৌঁছাতে সাহায্য করবে!</span>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+<header class="main-header">
+
+    <div class="header-container">
+
+        <a href="#home" class="logo" onclick="closeMobileMenu()">
+            <div class="logo-icon">🛍️</div>
+            <div class="logo-text">
+                <strong>Mustakim</strong>
+                <span>SHOP</span>
+            </div>
+        </a>
+
+
+        <!-- SEARCH -->
+        <div class="search-box">
+
+            <select id="searchCategory" aria-label="Category">
+                <option value="all">সব ক্যাটাগরি</option>
+                <option value="women">মেয়েদের</option>
+                <option value="men">ছেলেদের</option>
+                <option value="kids">বাচ্চাদের</option>
+                <option value="accessories">অ্যাক্সেসরিজ</option>
+                <option value="beauty">বিউটি</option>
+            </select>
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="আপনি কী খুঁজছেন?"
+                autocomplete="off"
+            >
+
+            <button type="button" onclick="performSearch()" aria-label="Search">
+                🔍
+            </button>
+
+        </div>
+
+
+        <!-- LANGUAGE -->
+        <div class="language-switcher">
+
+            <button
+                class="language-btn active"
+                onclick="setLanguage('bn', this)"
+            >
+                🇧🇩 বাংলা
+            </button>
+
+            <button
+                class="language-btn"
+                onclick="setLanguage('en', this)"
+            >
+                🇬🇧 English
+            </button>
+
+        </div>
+
+
+        <!-- HEADER ACTIONS -->
+        <div class="header-actions">
+
+            <button class="header-action" onclick="openWishlist()">
+                <span>♡</span>
+                <small>Wishlist</small>
+                <b id="wishlistCount">0</b>
+            </button>
+
+            <button class="header-action" onclick="openCart()">
+                <span>🛒</span>
+                <small>Cart</small>
+                <b id="cartCount">0</b>
+            </button>
+
+        </div>
+
+
+        <button
+            class="mobile-menu-btn"
+            onclick="toggleMenu()"
+            aria-label="Menu"
+        >
+            ☰
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+<nav class="main-nav" id="mobileNav">
+
+    <div class="nav-container">
+
+        <a href="#home" onclick="closeMobileMenu()">
+            🏠 <span data-bn="হোম" data-en="Home">হোম</span>
+        </a>
+
+        <a href="#categories" onclick="closeMobileMenu()">
+            🗂️ <span data-bn="ক্যাটাগরি" data-en="Categories">ক্যাটাগরি</span>
+        </a>
+
+        <a href="#flash" onclick="closeMobileMenu()">
+            ⚡ <span data-bn="ফ্ল্যাশ সেল" data-en="Flash Sale">ফ্ল্যাশ সেল</span>
+        </a>
+
+        <a href="#products" onclick="closeMobileMenu()">
+            🛍️ <span data-bn="সব পণ্য" data-en="All Products">সব পণ্য</span>
+        </a>
+
+        <a href="#contact" onclick="closeMobileMenu()">
+            📞 <span data-bn="যোগাযোগ" data-en="Contact">যোগাযোগ</span>
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+<section class="hero-section" id="home">
+
+    <div class="hero-layout">
+
+
+        <!-- CATEGORY SIDEBAR -->
+        <aside class="hero-category-box">
+
+            <div class="hero-category-title">
+                <span>☰</span>
+                <strong data-bn="ক্যাটাগরি" data-en="Categories">ক্যাটাগরি</strong>
+            </div>
+
+            <button onclick="filterCategory('women')">
+                👗
+                <span data-bn="মেয়েদের" data-en="Women">মেয়েদের</span>
+                <b>›</b>
+            </button>
+
+            <button onclick="filterCategory('men')">
+                👔
+                <span data-bn="ছেলেদের" data-en="Men">ছেলেদের</span>
+                <b>›</b>
+            </button>
+
+            <button onclick="filterCategory('kids')">
+                🧒
+                <span data-bn="বাচ্চাদের" data-en="Kids">বাচ্চাদের</span>
+                <b>›</b>
+            </button>
+
+            <button onclick="filterCategory('shoes')">
+                👟
+                <span data-bn="জুতা" data-en="Shoes">জুতা</span>
+                <b>›</b>
+            </button>
+
+            <button onclick="filterCategory('accessories')">
+                👜
+                <span data-bn="অ্যাক্সেসরিজ" data-en="Accessories">অ্যাক্সেসরিজ</span>
+                <b>›</b>
+            </button>
+
+            <button onclick="filterCategory('beauty')">
+                💄
+                <span data-bn="বিউটি" data-en="Beauty">বিউটি</span>
+                <b>›</b>
+            </button>
+
+            <button onclick="filterCategory('all')">
+                ✨
+                <span data-bn="সব পণ্য" data-en="All Products">সব পণ্য</span>
+                <b>›</b>
+            </button>
+
+        </aside>
+
+
+        <!-- HERO MAIN -->
+        <div class="hero-main">
+
+            <div class="hero-content">
+
+                <span class="hero-kicker">
+                    ✨ MUSTAKIM SHOP
+                </span>
+
+                <h1>
+                    <span data-bn="আপনার পছন্দের পণ্য" data-en="Your Favourite Products">
+                        আপনার পছন্দের পণ্য
+                    </span>
+                    <br>
+
+                    <strong
+                        data-bn="এক জায়গায়"
+                        data-en="In One Place"
+                    >
+                        এক জায়গায়
+                    </strong>
+                </h1>
+
+                <p
+                    data-bn="মেয়েদের, ছেলেদের ও বাচ্চাদের জন্য বাছাই করা সুন্দর পণ্য।"
+                    data-en="Beautifully selected products for women, men and kids."
+                >
+                    মেয়েদের, ছেলেদের ও বাচ্চাদের জন্য বাছাই করা সুন্দর পণ্য।
+                </p>
+
+
+                <div class="hero-buttons">
+
+                    <button
+                        class="primary-btn"
+                        onclick="scrollToProducts()"
+                    >
+                        🛍️
+                        <span
+                            data-bn="এখনই শপিং করুন"
+                            data-en="Shop Now"
+                        >
+                            এখনই শপিং করুন
+                        </span>
+                    </button>
+
+                    <button
+                        class="secondary-btn"
+                        onclick="filterCategory('women')"
+                    >
+                        👗
+                        <span
+                            data-bn="মেয়েদের কালেকশন"
+                            data-en="Women's Collection"
+                        >
+                            মেয়েদের কালেকশন
+                        </span>
+                    </button>
+
+                </div>
+
+
+                <div class="hero-mini-stats premium-quality-only">
+                    <div>
+                        <strong>5★</strong>
+                        <span>Quality</span>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- HERO PRODUCT SLIDER -->
+            <div class="hero-art">
+
+                <div class="hero-circle"></div>
+
+                <div class="hero-product-slider" id="heroProductSlider">
+                    <!-- JS দিয়ে Product আসবে -->
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- HERO OFFERS -->
+        <aside class="hero-offers">
+
+            <div class="offer-card">
+                <span>🚚</span>
+                <div>
+                    <strong>Fast Delivery</strong>
+                    <small>সারা বাংলাদেশ</small>
+                </div>
+            </div>
+
+            <div class="offer-card">
+                <span>💳</span>
+                <div>
+                    <strong>Easy Payment</strong>
+                    <small>bKash & Nagad</small>
+                </div>
+            </div>
+
+            <div class="offer-card">
+                <span>💬</span>
+                <div>
+                    <strong>WhatsApp Order</strong>
+                    <small>01786938377</small>
+                </div>
+            </div>
+
+        </aside>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CATEGORIES
+========================================================= -->
+<section class="category-section" id="categories">
+
+    <div class="section-heading">
+
+        <div>
+            <span class="section-kicker">EXPLORE</span>
+
+            <h2
+                data-bn="ক্যাটাগরি অনুযায়ী শপিং করুন"
+                data-en="Shop By Category"
+            >
+                ক্যাটাগরি অনুযায়ী শপিং করুন
+            </h2>
+        </div>
+
+        <button
+            class="view-all-btn"
+            onclick="filterCategory('all')"
+        >
+            সব দেখুন →
+        </button>
+
+    </div>
+
+
+    <div class="category-grid">
+
+        <button class="category-card" onclick="filterCategory('women')">
+            <div class="category-image women-category">
+                👗
+            </div>
+            <strong>মেয়েদের</strong>
+            <span>Women Collection</span>
+        </button>
+
+
+        <button class="category-card" onclick="filterCategory('men')">
+            <div class="category-image men-category">
+                👔
+            </div>
+            <strong>ছেলেদের</strong>
+            <span>Men Collection</span>
+        </button>
+
+
+        <button class="category-card" onclick="filterCategory('kids')">
+            <div class="category-image kids-category">
+                🧒
+            </div>
+            <strong>বাচ্চাদের</strong>
+            <span>Kids Collection</span>
+        </button>
+
+
+        <button class="category-card" onclick="filterCategory('shoes')">
+            <div class="category-image shoes-category">
+                👟
+            </div>
+            <strong>জুতা</strong>
+            <span>Shoes Collection</span>
+        </button>
+
+
+        <button class="category-card" onclick="filterCategory('accessories')">
+            <div class="category-image accessories-category">
+                👜
+            </div>
+            <strong>অ্যাক্সেসরিজ</strong>
+            <span>Accessories</span>
+        </button>
+
+
+        <button class="category-card" onclick="filterCategory('beauty')">
+            <div class="category-image beauty-category">
+                💄
+            </div>
+            <strong>বিউটি</strong>
+            <span>Beauty Care</span>
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FLASH SALE
+========================================================= -->
+<section class="flash-section" id="flash">
+
+    <div class="flash-header">
+
+        <div>
+            <span class="section-kicker">LIMITED TIME</span>
+
+            <h2>
+                ⚡ Flash Sale
+            </h2>
+
+            <p>
+                জনপ্রিয় পণ্যগুলো বিশেষ দামে
+            </p>
+        </div>
+
+        <div class="flash-timer">
+            <span>SALE</span>
+            <strong>🔥</strong>
+        </div>
+
+    </div>
+
+
+    <div class="flash-products" id="flashProducts">
+        <!-- JS -->
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PRODUCTS
+========================================================= -->
+<section class="products-section" id="products">
+
+    <div class="section-heading">
+
+        <div>
+            <span class="section-kicker">MUSTAKIM COLLECTION</span>
+
+            <h2
+                id="productsTitle"
+                data-bn="সব পণ্য"
+                data-en="All Products"
+            >
+                সব পণ্য
+            </h2>
+
+            <p id="productResultText">
+                আমাদের নির্বাচিত পণ্যসমূহ
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- PRODUCT CONTROLS -->
+    <div class="product-controls">
+
+        <div class="filter-buttons">
+
+            <button
+                class="filter-chip active"
+                onclick="filterCategory('all', this)"
+            >
+                সব
+            </button>
+
+            <button
+                class="filter-chip"
+                onclick="filterCategory('women', this)"
+            >
+                👗 মেয়েদের
+            </button>
+
+            <button
+                class="filter-chip"
+                onclick="filterCategory('men', this)"
+            >
+                👔 ছেলেদের
+            </button>
+
+            <button
+                class="filter-chip"
+                onclick="filterCategory('kids', this)"
+            >
+                🧒 বাচ্চাদের
+            </button>
+
+            <button
+                class="filter-chip"
+                onclick="filterCategory('shoes', this)"
+            >
+                👟 জুতা
+            </button>
+
+            <button
+                class="filter-chip"
+                onclick="filterCategory('accessories', this)"
+            >
+                👜 অ্যাক্সেসরিজ
+            </button>
+
+            <button
+                class="filter-chip"
+                onclick="filterCategory('beauty', this)"
+            >
+                💄 বিউটি
+            </button>
+
+        </div>
+
+
+        <select id="sortProducts" onchange="sortProducts()">
+            <option value="default">সাজানো: ডিফল্ট</option>
+            <option value="low">দাম: কম থেকে বেশি</option>
+            <option value="high">দাম: বেশি থেকে কম</option>
+            <option value="rating">রেটিং</option>
+            <option value="discount">ডিসকাউন্ট</option>
+        </select>
+
+    </div>
+
+
+    <!-- PRODUCT GRID -->
+    <div class="products-grid" id="productList">
+        <!-- Product এখানে আসবে -->
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     TRUST
+========================================================= -->
+<section class="trust-section">
+
+    <div class="trust-grid">
+
+        <div class="trust-card">
+            <span>🚚</span>
+            <div>
+                <strong>দেশজুড়ে ডেলিভারি</strong>
+                <small>আপনার ঠিকানায় পৌঁছে যাবে</small>
+            </div>
+        </div>
+
+        <div class="trust-card">
+            <span>💳</span>
+            <div>
+                <strong>সহজ পেমেন্ট</strong>
+                <small>bKash & Nagad</small>
+            </div>
+        </div>
+
+        <div class="trust-card">
+            <span>🔒</span>
+            <div>
+                <strong>নিরাপদ অর্ডার</strong>
+                <small>WhatsApp-এ সরাসরি অর্ডার</small>
+            </div>
+        </div>
+
+        <div class="trust-card">
+            <span>💬</span>
+            <div>
+                <strong>সাপোর্ট</strong>
+                <small>01786938377</small>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PRODUCT DETAIL MODAL
+========================================================= -->
+<div
+    class="modal-overlay"
+    id="productModal"
+    onclick="closeProductModalOutside(event)"
+>
+
+    <div class="product-modal">
+
+        <button
+            class="modal-close"
+            onclick="closeProductModal()"
+            aria-label="Close"
+        >
+            ×
+        </button>
+
+
+        <div class="product-detail-layout">
+
+
+            <!-- GALLERY -->
+            <div class="product-gallery-area">
+
+                <div class="product-image-zoom-wrapper">
+
+                    <div
+                        class="product-main-image-box"
+                        id="zoomBox"
+                    >
+
+                        <span class="zoom-label">
+                            🔍 Hover to Zoom
+                        </span>
+
+                        <img
+                            id="productMainImage"
+                            src=""
+                            alt="Product"
+                        >
+
+                        <div
+                            class="zoom-lens"
+                            id="zoomLens"
+                        ></div>
+
+                    </div>
+
+
+                    <div
+                        class="zoom-preview"
+                        id="zoomPreview"
+                    ></div>
+
+                </div>
+
+
+                <!-- THUMBNAILS -->
+                <div
+                    class="product-thumbnails"
+                    id="productThumbnails"
+                ></div>
+
+            </div>
+
+
+            <!-- DETAILS -->
+            <div class="product-detail-content">
+
+                <span
+                    class="product-category-label"
+                    id="detailCategory"
+                >
+                    Product
+                </span>
+
+
+                <h2 id="detailName">
+                    Product Name
+                </h2>
+
+
+                <div class="detail-rating">
+
+                    <span id="detailStars">
+                        ★★★★★
+                    </span>
+
+                    <strong id="detailRating">
+                        4.8
+                    </strong>
+
+                    <span id="detailReviews">
+                        (128 reviews)
+                    </span>
+
+                </div>
+
+
+                <div class="detail-price-row">
+
+                    <strong id="detailPrice">
+                        ৳0
+                    </strong>
+
+                    <del id="detailOldPrice">
+                        ৳0
+                    </del>
+
+                    <span
+                        class="discount-badge"
+                        id="detailDiscount"
+                    >
+                        -0%
+                    </span>
+
+                </div>
+
+
+                <div class="stock-info" id="detailStock">
+                    🟢 In Stock
+                </div>
+
+
+                <div class="product-description">
+
+                    <h3>সংক্ষিপ্ত বিবরণ</h3>
+
+                    <p id="detailDescription">
+                        Product description
+                    </p>
+
+                </div>
+
+
+                <!-- SIZE -->
+                <div class="option-section">
+
+                    <div class="option-title">
+                        <strong id="sizeLabel">সাইজ:</strong>
+                        <span id="selectedSize">সাইজ নির্বাচন করুন</span>
+                    </div>
+
+                    <div class="option-buttons size-option-buttons">
+
+                        <button data-size="S"
+                            class="option-btn"
+                            onclick="selectSize('S', this)"
+                        >
+                            S
+                        </button>
+
+                        <button
+                            class="option-btn"
+                            onclick="selectSize('M', this)"
+                        >
+                            M
+                        </button>
+
+                        <button
+                            class="option-btn"
+                            onclick="selectSize('L', this)"
+                        >
+                            L
+                        </button>
+
+                        <button
+                            class="option-btn"
+                            onclick="selectSize('XL', this)"
+                        >
+                            XL
+                        </button>
+
+                        <button data-size="XXL"
+                            class="option-btn"
+                            onclick="selectSize('XXL', this)"
+                        >
+                            XXL
+                        </button>
+
+                        <button data-size="39"
+                            class="option-btn"
+                            onclick="selectSize('39', this)"
+                        >39</button>
+                        <button data-size="40"
+                            class="option-btn"
+                            onclick="selectSize('40', this)"
+                        >40</button>
+                        <button data-size="41"
+                            class="option-btn"
+                            onclick="selectSize('41', this)"
+                        >41</button>
+                        <button data-size="42"
+                            class="option-btn"
+                            onclick="selectSize('42', this)"
+                        >42</button>
+                        <button data-size="43"
+                            class="option-btn"
+                            onclick="selectSize('43', this)"
+                        >43</button>
+                        <button data-size="44"
+                            class="option-btn"
+                            onclick="selectSize('44', this)"
+                        >44</button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- COLOR -->
+                <div class="option-section">
+
+                    <div class="option-title">
+                        <strong>কালার:</strong>
+                        <span id="selectedColor">Black</span>
+                    </div>
+
+                    <div class="option-buttons">
+
+                        <button
+                            class="option-btn active"
+                            onclick="selectColor('Black', this)"
+                        >
+                            Black
+                        </button>
+
+                        <button
+                            class="option-btn"
+                            onclick="selectColor('White', this)"
+                        >
+                            White
+                        </button>
+
+                        <button
+                            class="option-btn"
+                            onclick="selectColor('Red', this)"
+                        >
+                            Red
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DELIVERY -->
+                <div class="delivery-info">
+
+                    <div class="delivery-box">
+
+                        <span>🚚</span>
+
+                        <div>
+                            <strong>Delivery</strong>
+                            <small>সারা বাংলাদেশ</small>
+                        </div>
+
+                    </div>
+
+                    <div class="delivery-box">
+
+                        <span>💳</span>
+
+                        <div>
+                            <strong>Payment</strong>
+                            <small>bKash / Nagad</small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- QUANTITY -->
+                <div class="quantity-area">
+
+                    <strong>পরিমাণ:</strong>
+
+                    <div class="quantity-control">
+
+                        <button onclick="changeDetailQuantity(-1)">
+                            −
+                        </button>
+
+                        <span id="detailQuantity">
+                            1
+                        </span>
+
+                        <button onclick="changeDetailQuantity(1)">
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACTIONS -->
+                <div class="detail-actions">
+
+                    <button
+                        class="detail-cart-btn"
+                        onclick="addCurrentToCart()"
+                    >
+                        🛒 Cart-এ যোগ করুন
+                    </button>
+
+                    <button
+                        class="detail-buy-btn"
+                        onclick="buyCurrentProduct()"
+                    >
+                        ⚡ এখনই কিনুন
+                    </button>
+
+                    <button
+                        class="detail-wishlist-btn"
+                        id="detailWishlistBtn"
+                        onclick="toggleCurrentWishlist()"
+                    >
+                        ♡
+                    </button>
+
+                </div>
+
+
+                <div class="payment-note">
+                    💳 bKash / Nagad:
+                    <strong>01786938377</strong>
+                </div>
+
+
+                <!-- FULL DESCRIPTION -->
+                <div class="detail-description-full">
+
+                    <h3>
+                        📋 Product Description
+                    </h3>
+
+                    <p id="detailFullDescription">
+                        Product details
+                    </p>
+
+                </div>
+
+
+                <!-- SPECIFICATIONS -->
+                <div class="detail-specs">
+
+                    <h3 class="detail-specs-title">
+                        ⚙️ Specifications
+                    </h3>
+
+                    <table class="spec-table">
+
+                        <tr>
+                            <td>Brand</td>
+                            <td>Mustakim Shop</td>
+                        </tr>
+
+                        <tr>
+                            <td>Category</td>
+                            <td id="specCategory">—</td>
+                        </tr>
+
+                        <tr>
+                            <td>Availability</td>
+                            <td id="specStock">—</td>
+                        </tr>
+
+                        <tr>
+                            <td>Rating</td>
+                            <td id="specRating">—</td>
+                        </tr>
+
+                        <tr>
+                            <td>Delivery</td>
+                            <td>সারা বাংলাদেশ</td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+
+                <!-- RELATED -->
+                <div class="related-section">
+
+                    <h3 class="related-title">
+                        🛍️ Related Products
+                    </h3>
+
+                    <div
+                        class="related-grid"
+                        id="relatedProducts"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     CART DRAWER
+========================================================= -->
+<div
+    class="drawer-overlay"
+    id="cartOverlay"
+    onclick="closeCart()"
+></div>
+
+
+<aside
+    class="cart-drawer"
+    id="cartDrawer"
+>
+
+    <div class="drawer-header">
+
+        <div>
+            <strong>🛒 Your Cart</strong>
+            <small id="cartHeaderCount">
+                0 Items
+            </small>
+        </div>
+
+        <button onclick="closeCart()">×</button>
+
+    </div>
+
+
+    <div
+        class="cart-items"
+        id="cartItems"
+    ></div>
+
+
+    <div class="cart-footer">
+
+        <div class="cart-summary-row">
+            <span>Subtotal</span>
+            <strong id="cartSubtotal">৳0</strong>
+        </div>
+
+        <div class="cart-summary-row">
+            <span>Delivery</span>
+            <strong>আলোচনা সাপেক্ষে</strong>
+        </div>
+
+        <div class="cart-summary-row total">
+            <span>Total</span>
+            <strong id="cartTotal">৳0</strong>
+        </div>
+
+
+        <button
+            class="checkout-btn"
+            onclick="openCartOrder()"
+        >
+            💬 WhatsApp-এ অর্ডার করুন
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================================================
+     WISHLIST MODAL
+========================================================= -->
+<div
+    class="modal-overlay"
+    id="wishlistModal"
+    onclick="closeWishlistOutside(event)"
+>
+
+    <div class="wishlist-modal">
+
+        <button
+            class="modal-close"
+            onclick="closeWishlist()"
+        >
+            ×
+        </button>
+
+        <div class="section-heading">
+
+            <div>
+                <span class="section-kicker">YOUR PICKS</span>
+                <h2>❤️ Wishlist</h2>
+            </div>
+
+        </div>
+
+        <div
+            class="wishlist-grid"
+            id="wishlistGrid"
+        ></div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     ORDER MODAL
+========================================================= -->
+<div
+    class="modal-overlay"
+    id="orderModal"
+    onclick="closeOrderOutside(event)"
+>
+
+    <div class="order-modal">
+
+        <button
+            class="modal-close"
+            onclick="closeOrderModal()"
+        >
+            ×
+        </button>
+
+
+        <div class="order-heading">
+
+            <span>🛍️</span>
+
+            <div>
+                <h2>অর্ডার সম্পন্ন করুন</h2>
+                <p>তথ্য পূরণ করে WhatsApp-এ অর্ডার পাঠান</p>
+            </div>
+
+        </div>
+
+
+        <div
+            class="order-preview"
+            id="orderPreview"
+        ></div>
+
+
+        <form
+            id="orderForm"
+            onsubmit="submitOrder(event)"
+        >
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        আপনার নাম *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="orderName"
+                        placeholder="আপনার নাম"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        মোবাইল নম্বর *
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="orderPhone"
+                        placeholder="01XXXXXXXXX"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        জেলা *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="orderDistrict"
+                        placeholder="যেমন: নেত্রকোণা"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        থানা / উপজেলা *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="orderThana"
+                        placeholder="থানা / উপজেলা"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        গ্রাম / এলাকা
+                    </label>
+
+                    <input
+                        type="text"
+                        id="orderVillage"
+                        placeholder="গ্রাম / এলাকা"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        সম্পূর্ণ ঠিকানা *
+                    </label>
+
+                    <textarea
+                        id="orderAddress"
+                        placeholder="বাড়ি, রাস্তা, বাজার ইত্যাদি"
+                        required
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <div class="order-total-box">
+
+                <span>মোট মূল্য</span>
+
+                <strong id="orderTotal">
+                    ৳0
+                </strong>
+
+            </div>
+
+
+            <div class="payment-number">
+                💳 bKash / Nagad:
+                <strong>01786938377</strong>
+            </div>
+
+
+            <button
+                type="submit"
+                class="submit-order-btn"
+            >
+                💬 WhatsApp-এ অর্ডার পাঠান
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+<div
+    class="toast"
+    id="toast"
+>
+    ✓ Done
+</div>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+<footer class="footer" id="contact">
+
+    <div class="footer-grid">
+
+
+        <div class="footer-brand">
+
+            <div class="logo">
+
+                <div class="logo-icon">🛍️</div>
+
+                <div class="logo-text">
+                    <strong>Mustakim</strong>
+                    <span>SHOP</span>
+                </div>
+
+            </div>
+
+            <p>
+                আপনার পছন্দের পণ্য সহজে খুঁজুন,
+                অর্ডার করুন এবং উপভোগ করুন।
+            </p>
+
+
+            <div class="social-links">
+
+                <a
+                    href="https://www.facebook.com/share/19GyuR9N5D/"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    Facebook
+                </a>
+
+                <a
+                    href="https://wa.me/8801786938377"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    WhatsApp
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>Shop</h3>
+
+            <button onclick="filterCategory('women')">
+                মেয়েদের
+            </button>
+
+            <button onclick="filterCategory('men')">
+                ছেলেদের
+            </button>
+
+            <button onclick="filterCategory('kids')">
+                বাচ্চাদের
+            </button>
+
+            <button onclick="filterCategory('accessories')">
+                অ্যাক্সেসরিজ
+            </button>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>Help</h3>
+
+            <button onclick="scrollToProducts()">
+                সব পণ্য
+            </button>
+
+            <button onclick="openCart()">
+                Cart
+            </button>
+
+            <button onclick="openWishlist()">
+                Wishlist
+            </button>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>Contact</h3>
+
+            <p>📞 01786938377</p>
+            <p>💬 WhatsApp Available</p>
+            <p>🇧🇩 Bangladesh</p>
+
+            <div class="footer-payment">
+                <strong>Payment</strong>
+                <span>bKash</span>
+                <span>Nagad</span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © <span id="currentYear"></span>
+            Mustakim Shop. All Rights Reserved.
+        </p>
+
+        <p>
+            Made with ❤️ by Mustakim
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+
+<!-- ================= ADMIN PRODUCT MANAGER ================= -->
+<button class="admin-open-btn" type="button" onclick="openAdminPanel()">⚙️ Admin</button>
+<div class="admin-modal" id="adminModal" aria-hidden="true">
+  <div class="admin-panel">
+    <div class="admin-head">
+      <h2>🛍️ Product Manager</h2>
+      <button class="admin-close" onclick="closeAdminPanel()">×</button>
+    </div>
+
+    <div id="adminFirebaseStatus" class="admin-note" style="margin-bottom:12px">
+      ☁️ Public Product Database: Firebase
+    </div>
+
+    <div id="adminLoginView" class="admin-login">
+      <div class="admin-note">
+        Owner Login করুন। Product publish/delete করার অনুমতি শুধু Firebase-এ অনুমোদিত Owner account-এর থাকবে।
+      </div>
+      <div class="admin-field">
+        <label>Owner Email</label>
+        <input id="adminEmail" type="email" autocomplete="username" placeholder="আপনার Firebase Owner Email">
+      </div>
+      <div class="admin-field">
+        <label>Password</label>
+        <input id="adminPassword" type="password" autocomplete="current-password" placeholder="Firebase Password">
+      </div>
+      <button class="admin-primary" style="width:100%" onclick="adminLogin()">🔐 Owner Login</button>
+      <div id="adminLoginError" class="admin-note" style="display:none;margin-top:10px;color:#c9152b"></div>
+    </div>
+
+    <div id="adminAppView" style="display:none">
+      <div class="admin-note">
+        ✅ Login সফল। এখানে Product Publish করলে একই website link-এ সব Customer দেখতে পাবে। Reload দিলেও Product থাকবে।
+      </div>
+
+      <form id="adminProductForm" onsubmit="saveAdminProduct(event)">
+        <input type="hidden" id="adminProductId">
+        <input type="hidden" id="adminExistingImages">
+        <input type="hidden" id="adminExistingStoragePaths">
+
+        <div class="admin-grid">
+          <div class="admin-field">
+            <label>Product Name</label>
+            <input id="adminName" required placeholder="যেমন: Premium T-Shirt">
+          </div>
+
+          <div class="admin-field">
+            <label>Category</label>
+            <select id="adminCategory" required>
+              <option value="women">👩 Women</option>
+              <option value="men">👨 Men</option>
+              <option value="kids">🧒 Kids</option>
+              <option value="shoes">👟 Shoes</option>
+              <option value="accessories">👜 Accessories</option>
+              <option value="beauty">💄 Beauty</option>
+            </select>
+          </div>
+
+          <div class="admin-field">
+            <label>Price</label>
+            <input id="adminPrice" type="number" min="0" required>
+          </div>
+          <div class="admin-field">
+            <label>Old Price</label>
+            <input id="adminOldPrice" type="number" min="0">
+          </div>
+          <div class="admin-field">
+            <label>Stock</label>
+            <input id="adminStock" type="number" min="0" value="10">
+          </div>
+          <div class="admin-field">
+            <label>Rating</label>
+            <input id="adminRating" type="number" min="0" max="5" step="0.1" value="5">
+          </div>
+          <div class="admin-field">
+            <label>Location</label>
+            <input id="adminLocation" placeholder="নেত্রকোণা">
+          </div>
+          <div class="admin-field">
+            <label>Badge</label>
+            <input id="adminBadge" placeholder="New / Best Seller">
+          </div>
+
+          <div class="admin-field admin-full">
+            <label>📸 Product Images — সরাসরি ছবি Select করুন (১–৫টি)</label>
+            <input id="adminImageFiles" type="file" accept="image/*" multiple>
+            <small style="display:block;margin-top:6px;color:#777">Edit করার সময় নতুন ছবি না দিলে আগের ছবি থাকবে।</small>
+          </div>
+
+          <div class="admin-field admin-full">
+            <label>Search Keywords (বাংলা/English, comma separated)</label>
+            <input id="adminSearchTerms" placeholder="জুতা, জুতো, shoe, shoes, sneaker">
+          </div>
+
+          <div class="admin-field admin-full">
+            <label>Description</label>
+            <textarea id="adminDescription" rows="3" placeholder="Product description"></textarea>
+          </div>
+
+          <div class="admin-field admin-full">
+            <label>Size</label>
+            <div id="adminSizeArea"></div>
+          </div>
+        </div>
+
+        <div id="adminUploadStatus" class="admin-note" style="display:none;margin-top:12px"></div>
+
+        <div class="admin-actions">
+          <button class="admin-primary" id="adminSaveBtn" type="submit">☁️ Publish Product</button>
+          <button class="admin-secondary" type="button" onclick="resetAdminForm()">↺ Clear</button>
+          <button class="admin-danger" type="button" onclick="adminLogout()">Logout</button>
+        </div>
+      </form>
+
+      <div class="admin-list">
+        <h3 style="margin:0 0 10px">Published Products</h3>
+        <div id="adminProductList"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================
+     JAVASCRIPT
+     সব JS index.html-এর ভিতরেই
+========================================================= -->
+<script>
+
+/* =========================================================
+   PRODUCT DATABASE
+   নতুন Product যোগ করতে নিচে আরেকটি { } object যোগ করুন
+========================================================= */
+
+const PRODUCTS = [
+
+    {
+        id: 1,
+        category: "women",
+        sizes: ["S", "M", "L", "XL", "XXL"],
+        name: "Premium Ladies Fashion Dress",
+        price: 1250,
+        oldPrice: 1650,
+        discount: 24,
+        rating: 4.8,
+        reviews: 128,
+        badge: "Best Seller",
+        stock: 20,
+
+        images: [
+            "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85"
+        ],
+
+        description: "স্টাইলিশ ও আরামদায়ক Premium Ladies Fashion Dress."
+    },
+
+
+    {
+        id: 2,
+        category: "women",
+        sizes: ["S", "M", "L", "XL", "XXL"],
+        name: "Premium Ladies Hand Bag",
+        price: 950,
+        oldPrice: 1250,
+        discount: 24,
+        rating: 4.7,
+        reviews: 94,
+        badge: "Hot",
+        stock: 15,
+
+        images: [
+            "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=900&q=85"
+        ],
+
+        description: "দৈনন্দিন ব্যবহার ও ফ্যাশনের জন্য সুন্দর Hand Bag."
+    },
+
+
+    {
+        id: 3,
+        category: "women",
+        sizes: ["S", "M", "L", "XL", "XXL"],
+        name: "Premium Fashion Sunglasses",
+        price: 550,
+        oldPrice: 750,
+        discount: 27,
+        rating: 4.6,
+        reviews: 71,
+        badge: "New",
+        stock: 30,
+
+        images: [
+            "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1509695507497-903c140c43b0?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=900&q=85"
+        ],
+
+        description: "Modern design-এর Premium Fashion Sunglasses."
+    },
+
+
+    {
+        id: 4,
+        category: "men",
+        sizes: ["S", "M", "L", "XL", "XXL"],
+        name: "Premium Casual Men's Shirt",
+        price: 890,
+        oldPrice: 1150,
+        discount: 23,
+        rating: 4.8,
+        reviews: 116,
+        badge: "Best Seller",
+        stock: 25,
+
+        images: [
+            "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1627225924765-552d49cf47ad?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=900&q=85"
+        ],
+
+        description: "Premium quality cotton casual shirt."
+    },
+
+
+    {
+        id: 5,
+        category: "men",
+        sizes: ["S", "M", "L", "XL", "XXL"],
+        name: "Classic Men's Wrist Watch",
+        price: 1450,
+        oldPrice: 1850,
+        discount: 22,
+        rating: 4.9,
+        reviews: 162,
+        badge: "Popular",
+        stock: 18,
+
+        images: [
+            "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1539874754764-5a96559165b0?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1508057198894-247b23fe5ade?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?auto=format&fit=crop&w=900&q=85"
+        ],
+
+        description: "Elegant design-এর Classic Men's Wrist Watch."
+    },
+
+
+    {
+        id: 6,
+        category: "shoes",
+        sizes: ["39", "40", "41", "42", "43", "44"],
+        sizeType: "shoe",
+        name: "Premium Casual Sneakers",
+        price: 1650,
+        oldPrice: 2200,
+        discount: 25,
+        rating: 4.7,
+        reviews: 87,
+        badge: "Sale",
+        stock: 12,
+
+        images: [
+            "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3?auto=format&fit=crop&w=900&q=85"
+        ],
+
+        description: "Comfortable এবং stylish casual sneakers."
+    },
+
+
+    {
+        id: 7,
+        category: "kids",
+        sizes: ["S", "M", "L", "XL", "XXL"],
+        name: "Kids Premium Fashion Dress",
+        price: 750,
+        oldPrice: 950,
+        discount: 21,
+        rating: 4.8,
+        reviews: 65,
+        badge: "Kids",
+        stock: 22,
+
+        images: [
+            "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1545558014-8692077e9b5c?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1607453998774-d533f65dac99?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1519457431-44ccd64a579b?auto=format&fit=crop&w=900&q=85"
+        ],
+
+        description: "বাচ্চাদের জন্য আরামদায়ক ও সুন্দর Fashion Dress."
+    },
+
+
+    {
+        id: 8,
+        category: "accessories",
+        sizes: [],
+        name: "Premium Ladies Wallet",
+        price: 650,
+        oldPrice: 850,
+        discount: 24,
+        rating: 4.6,
+        reviews: 48,
+        badge: "New",
+        stock: 20,
+
+        images: [
+            "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=85"
+        ],
+
+        description: "Compact এবং stylish Premium Wallet."
+    },
+
+
+    {
+        id: 9,
+        category: "beauty",
+        sizes: [],
+        name: "Premium Beauty Care Set",
+        price: 1150,
+        oldPrice: 1450,
+        discount: 21,
+        rating: 4.7,
+        reviews: 92,
+        badge: "Hot",
+        stock: 14,
+
+        images: [
+            "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=900&q=85"
+        ],
+
+        description: "দৈনন্দিন ব্যবহারের জন্য Beauty Care Set."
+    },
+
+
+    {
+        id: 10,
+        category: "kids",
+        sizes: ["S", "M", "L", "XL", "XXL"],
+        name: "Kids Cute Backpack",
+        price: 590,
+        oldPrice: 790,
+        discount: 25,
+        rating: 4.8,
+        reviews: 58,
+        badge: "Kids",
+        stock: 25,
+
+        images: [
+            "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1577733966973-d680bffd2e80?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=900&q=85",
+            "https://images.unsplash.com/photo-1602030028438-4cf153cbae9e?auto=format&fit=crop&w=900&q=85"
+        ],
+
+        description: "বাচ্চাদের স্কুল ও ভ্রমণের জন্য সুন্দর Backpack."
+    }
+
+];
+
+
+/* =========================================================
+   GLOBAL VARIABLES
+========================================================= */
+
+const SHOP_WHATSAPP = "8801786938377";
+
+let cart = JSON.parse(
+    localStorage.getItem("mustakim_cart") || "[]"
+);
+
+let wishlist = JSON.parse(
+    localStorage.getItem("mustakim_wishlist") || "[]"
+);
+
+let currentProduct = null;
+let currentImageIndex = 0;
+let detailQuantity = 1;
+let selectedSize = "";
+let selectedColor = "Black";
+let orderItems = [];
+
+let currentProducts = [...PRODUCTS];
+
+let heroCurrentSlide = 0;
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function money(value){
+
+    return "৳" + Number(value || 0).toLocaleString("en-BD");
+
+}
+
+
+function categoryName(category){
+
+    const names = {
+
+        women: "মেয়েদের",
+        men: "ছেলেদের",
+        kids: "বাচ্চাদের",
+        shoes: "জুতা",
+        accessories: "অ্যাক্সেসরিজ",
+        beauty: "বিউটি"
+
+    };
+
+    return names[category] || category;
+
+}
+
+
+function stars(rating){
+
+    const rounded = Math.round(Number(rating || 0));
+
+    return "★".repeat(rounded) +
+           "☆".repeat(Math.max(0,5-rounded));
+
+}
+
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================================
+   PRODUCT CARD
+========================================================= */
+
+function productCard(product){
+
+    const liked = wishlist.includes(product.id);
+    const sizes = Array.isArray(product.sizes) ? product.sizes : [];
+    const sizeType = product.sizeType || (sizes.length && sizes.every(v => /^\d+$/.test(String(v))) ? "shoe" : (sizes.length ? "clothing" : "none"));
+    const sizeLabel = sizeType === "shoe" ? "জুতার সাইজ" : (sizeType === "clothing" ? "সাইজ" : "");
+
+    return `
+        <article class="product-card yamshi-product-card" data-id="${product.id}">
+            <div class="product-card-image yamshi-product-image" onclick="openProduct(${product.id})">
+                <img src="${product.images[0]}" alt="${escapeHTML(product.name)}" loading="lazy" onerror="this.src='https://placehold.co/700x700?text=Mustakim+Shop'">
+                ${product.discount ? `<span class="yamshi-discount">-${product.discount}%</span>` : ""}
+                ${product.badge ? `<span class="yamshi-badge">${escapeHTML(product.badge)}</span>` : ""}
+                <button class="yamshi-wishlist ${liked ? "active" : ""}" onclick="event.stopPropagation(); toggleWishlist(${product.id})" aria-label="Wishlist">${liked ? "♥" : "♡"}</button>
+            </div>
+
+            <div class="yamshi-product-content">
+                <div class="yamshi-rating">
+                    <span>${stars(product.rating)}</span>
+                    <small>${product.rating} (${product.reviews})</small>
+                </div>
+
+                <h3 onclick="openProduct(${product.id})">${escapeHTML(product.name)}</h3>
+
+                <div class="yamshi-price-row">
+                    <strong>${money(product.price)}</strong>
+                    ${product.oldPrice ? `<del>${money(product.oldPrice)}</del>` : ""}
+                    ${product.discount ? `<em>-${product.discount}%</em>` : ""}
+                </div>
+
+                ${sizes.length ? `
+                    <div class="yamshi-size-area">
+                        <span>${sizeType === "shoe" ? "👟" : "📏"} ${sizeLabel}</span>
+                        <div class="yamshi-size-list">
+                            ${sizes.map(size => `<button type="button" onclick="event.stopPropagation(); openProduct(${product.id})">${escapeHTML(size)}</button>`).join("")}
+                        </div>
+                    </div>
+                ` : ""}
+
+                <div class="yamshi-meta">
+                    <span>${product.stock > 0 ? `📦 ${product.stock}টি বাকি` : "🔴 Stock শেষ"}</span>
+                    <span>🚚 Available</span>
+                </div>
+
+                <button class="yamshi-cart-btn" onclick="event.stopPropagation(); addToCart(${product.id})" ${product.stock <= 0 ? "disabled" : ""}>
+                    <span>🛒</span> Add to Cart
+                </button>
+            </div>
+        </article>
+    `;
+}
+
+/* =========================================================
+   RENDER PRODUCTS
+========================================================= */
+
+function renderProducts(products = currentProducts){
+
+    const container =
+        document.getElementById("productList");
+
+    if(!container) return;
+
+    currentProducts = [...products];
+
+
+    if(!products.length){
+
+        container.innerHTML = `
+
+            <div class="search-empty">
+
+                <div style="font-size:55px;">
+                    🔍
+                </div>
+
+                <h3>
+                    কোনো Product পাওয়া যায়নি
+                </h3>
+
+                <p>
+                    অন্য কোনো নাম, category অথবা price দিয়ে চেষ্টা করুন।
+                </p>
+
+                <button
+                    class="primary-btn"
+                    onclick="filterCategory('all')"
+                >
+                    সব Product দেখুন
+                </button>
+
+            </div>
+
+        `;
+
+        updateResultText(0);
+
+        return;
+    }
+
+
+    container.innerHTML =
+        products.map(productCard).join("");
+
+    updateResultText(products.length);
+
+}
+
+
+/* =========================================================
+   RESULT TEXT
+========================================================= */
+
+function updateResultText(count){
+
+    const el =
+        document.getElementById("productResultText");
+
+    if(el){
+
+        el.textContent =
+            `${count}টি Product পাওয়া গেছে`;
+
+    }
+
+}
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+function filterCategory(category, button){
+
+    let results;
+
+    if(category === "all"){
+
+        results = [...PRODUCTS];
+
+    }else{
+
+        results =
+            PRODUCTS.filter(
+                product =>
+                    product.category === category
+            );
+
+    }
+
+
+    currentProducts = results;
+
+    renderProducts(results);
+
+
+    document
+        .querySelectorAll(".filter-chip")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+
+    if(button){
+
+        button.classList.add("active");
+
+    }else{
+
+        const buttons =
+            document.querySelectorAll(".filter-chip");
+
+        buttons.forEach(btn => {
+
+            const text =
+                btn.textContent.toLowerCase();
+
+            if(
+                (category === "all" && text.includes("সব")) ||
+                (category === "women" && text.includes("মেয়েদের")) ||
+                (category === "men" && text.includes("ছেলেদের")) ||
+                (category === "kids" && text.includes("বাচ্চাদের")) ||
+                (category === "shoes" && text.includes("জুতা")) ||
+                (category === "accessories" && text.includes("অ্যাক্সেসরিজ")) ||
+                (category === "beauty" && text.includes("বিউটি"))
+            ){
+
+                btn.classList.add("active");
+
+            }
+
+        });
+
+    }
+
+
+    const title =
+        document.getElementById("productsTitle");
+
+    if(title){
+
+        title.textContent =
+            category === "all"
+            ? "সব পণ্য"
+            : categoryName(category) + " Collection";
+
+    }
+
+
+    document
+        .getElementById("products")
+        ?.scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function normalizeSearchText(value){
+    return String(value || "")
+        .toLowerCase()
+        .normalize("NFKC")
+        .replace(/[“”‘’]/g, "'")
+        .replace(/[\u200B-\u200D\uFEFF]/g, "")
+        .replace(/[^\p{L}\p{N}\s]+/gu, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+}
+
+function levenshteinDistance(a,b){
+    a=normalizeSearchText(a); b=normalizeSearchText(b);
+    if(a===b) return 0; if(!a) return b.length; if(!b) return a.length;
+    const prev=Array.from({length:b.length+1},(_,i)=>i);
+    for(let i=1;i<=a.length;i++){
+        const curr=[i];
+        for(let j=1;j<=b.length;j++){
+            const cost=a[i-1]===b[j-1]?0:1;
+            curr[j]=Math.min(curr[j-1]+1,prev[j]+1,prev[j-1]+cost);
+        }
+        for(let j=0;j<=b.length;j++) prev[j]=curr[j];
+    }
+    return prev[b.length];
+}
+
+function fuzzyTokenMatch(query,text){
+    const q=normalizeSearchText(query), t=normalizeSearchText(text);
+    if(!q||!t) return false;
+    if(t.includes(q)) return true;
+    const qt=q.split(/\s+/).filter(Boolean), tt=t.split(/\s+/).filter(Boolean);
+    return qt.every(qToken=>{
+        if(tt.some(tToken=>tToken.includes(qToken)||qToken.includes(tToken))) return true;
+        const maxDistance=qToken.length<=3?1:qToken.length<=6?2:3;
+        return tt.some(tToken=>Math.abs(tToken.length-qToken.length)<=maxDistance && levenshteinDistance(qToken,tToken)<=maxDistance);
+    });
+}
+
+const SEARCH_ALIASES={
+    women:["women","woman","ladies","lady","মেয়েদের","মহিলা","নারী","লেডিস"],
+    men:["men","man","mens","male","ছেলেদের","পুরুষ","মেন্স"],
+    kids:["kids","kid","children","child","বাচ্চা","বাচ্চাদের","শিশু","শিশুদের"],
+    shoes:["shoe","shoes","footwear","জুতা","জুতো","স্নিকার","স্নিকার্স","sneaker","sneakers"],
+    accessories:["accessories","accessory","অ্যাক্সেসরিজ","এক্সেসরিজ","ব্যাগ","bag","wallet","ওয়ালেট","মানিব্যাগ"],
+    beauty:["beauty","cosmetics","makeup","বিউটি","কসমেটিকস","প্রসাধনী"],
+    dress:["dress","dresses","ড্রেস","পোশাক","জামা","জামাকাপড়"],
+    shirt:["shirt","shirts","শার্ট","টি শার্ট","tshirt","t shirt"],
+    bag:["bag","bags","ব্যাগ","হ্যান্ডব্যাগ","হাতব্যাগ"],
+    sunglasses:["sunglasses","sunglass","সানগ্লাস","চশমা"],
+    watch:["watch","watches","ঘড়ি","ঘড়ি","ওয়াচ"],
+    sneakers:["sneaker","sneakers","জুতা","জুতো","স্নিকার","স্নিকার্স"],
+    wallet:["wallet","wallets","ওয়ালেট","মানিব্যাগ"],
+    backpack:["backpack","ব্যাকপ্যাক","স্কুল ব্যাগ","ব্যাগ"]
+};
+
+function getSearchAliases(product){
+    const aliases=[];
+    if(SEARCH_ALIASES[product.category]) aliases.push(...SEARCH_ALIASES[product.category]);
+    const name=normalizeSearchText(product.name);
+    Object.values(SEARCH_ALIASES).forEach(terms=>{
+        if(terms.some(term=>fuzzyTokenMatch(term,name))) aliases.push(...terms);
+    });
+    if(Array.isArray(product.searchTerms)) aliases.push(...product.searchTerms);
+    if(product.searchText) aliases.push(product.searchText);
+    return [...new Set(aliases)];
+}
+
+function productMatchesSearch(product,query){
+    const q=normalizeSearchText(query);
+    if(!q) return true;
+    const searchable=[product.name,product.description,product.category,categoryName(product.category),...(Array.isArray(product.sizes)?product.sizes:[]),...getSearchAliases(product)].filter(Boolean).join(" ");
+    return fuzzyTokenMatch(q,searchable) || getSearchAliases(product).some(alias=>fuzzyTokenMatch(q,alias));
+}
+
+function performSearch(){
+    const input=document.getElementById("searchInput");
+    const category=document.getElementById("searchCategory")?.value||"all";
+    const q=input?.value.trim()||"";
+    const normalizedQ=normalizeSearchText(q);
+    const results=PRODUCTS.filter(product=>{
+        const matchesText=productMatchesSearch(product,q)||String(product.price||"").includes(normalizedQ);
+        const matchesCategory=category==="all"||product.category===category;
+        return matchesText&&matchesCategory;
+    });
+    currentProducts=results;
+    renderProducts(results);
+    const title=document.getElementById("productsTitle");
+    if(title) title.textContent=q?`Search: ${q} (${results.length})`:"সব পণ্য";
+    document.getElementById("products")?.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+
+document
+    .getElementById("searchInput")
+    ?.addEventListener(
+        "keydown",
+        function(event){
+
+            if(event.key === "Enter"){
+
+                performSearch();
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   SORT
+========================================================= */
+
+function sortProducts(){
+
+    const sort =
+        document.getElementById("sortProducts")?.value;
+
+    let results = [...currentProducts];
+
+
+    if(sort === "low"){
+
+        results.sort(
+            (a,b) => a.price - b.price
+        );
+
+    }
+
+    else if(sort === "high"){
+
+        results.sort(
+            (a,b) => b.price - a.price
+        );
+
+    }
+
+    else if(sort === "rating"){
+
+        results.sort(
+            (a,b) => b.rating - a.rating
+        );
+
+    }
+
+    else if(sort === "discount"){
+
+        results.sort(
+            (a,b) => b.discount - a.discount
+        );
+
+    }
+
+
+    renderProducts(results);
+
+}
+
+
+/* =========================================================
+   PRODUCT DETAIL
+========================================================= */
+
+function openProduct(id){
+
+    const product =
+        PRODUCTS.find(
+            p => p.id === Number(id)
+        );
+
+    if(!product) return;
+
+
+    currentProduct = product;
+
+    currentImageIndex = 0;
+
+    detailQuantity = 1;
+
+
+    document.getElementById("detailName").textContent =
+        product.name;
+
+    document.getElementById("detailCategory").textContent =
+        categoryName(product.category);
+
+    document.getElementById("detailRating").textContent =
+        product.rating;
+
+    document.getElementById("detailReviews").textContent =
+        `(${product.reviews} reviews)`;
+
+    document.getElementById("detailStars").textContent =
+        stars(product.rating);
+
+    document.getElementById("detailPrice").textContent =
+        money(product.price);
+
+    document.getElementById("detailOldPrice").textContent =
+        money(product.oldPrice);
+
+    document.getElementById("detailDiscount").textContent =
+        `-${product.discount}%`;
+
+    document.getElementById("detailDescription").textContent =
+        product.description;
+
+    document.getElementById("detailFullDescription").textContent =
+        product.description +
+        " এই পণ্যটি Mustakim Shop-এর নির্বাচিত collection-এর অংশ। অর্ডার করার আগে আপনার পছন্দের size ও color নির্বাচন করতে পারবেন।";
+
+    document.getElementById("detailStock").textContent =
+        product.stock > 0
+        ? `🟢 In Stock — ${product.stock}টি available`
+        : "🔴 Out of Stock";
+
+
+    document.getElementById("detailQuantity").textContent =
+        detailQuantity;
+
+
+    document.getElementById("specCategory").textContent =
+        categoryName(product.category);
+
+    document.getElementById("specStock").textContent =
+        product.stock > 0
+        ? `${product.stock} Available`
+        : "Out of Stock";
+
+    document.getElementById("specRating").textContent =
+        `${product.rating} / 5`;
+
+
+    selectedSize = "";
+    selectedColor = "Black";
+
+    const sizeList = Array.isArray(product.sizes)
+        ? product.sizes
+        : [];
+
+    const sizeValue = document.getElementById("selectedSize");
+    const sizeButtons = document.querySelectorAll(
+        ".size-option-buttons .option-btn"
+    );
+
+    const sizeLabel = document.getElementById("sizeLabel");
+    const sizeType = product.sizeType || (sizeList.length && sizeList.every(v => /^\d+$/.test(String(v))) ? "shoe" : (sizeList.length ? "clothing" : "none"));
+
+    if(sizeLabel){
+        sizeLabel.textContent = sizeType === "shoe" ? "জুতার সাইজ:" : "সাইজ:";
+    }
+
+    if(sizeValue){
+        sizeValue.textContent = sizeList.length
+            ? (sizeType === "shoe" ? "জুতার সাইজ নির্বাচন করুন" : "সাইজ নির্বাচন করুন")
+            : "প্রযোজ্য নয়";
+    }
+
+    sizeButtons.forEach(btn => btn.classList.remove("active"));
+
+    if(sizeButtons.length){
+        sizeButtons.forEach(btn => {
+            const value = btn.dataset.size || btn.textContent.trim();
+            btn.style.display = sizeList.includes(value) ? "inline-flex" : "none";
+        });
+    }
+
+
+
+    renderProductGallery(product);
+
+    renderRelatedProducts(product);
+
+    updateDetailWishlistButton();
+
+
+    const modal =
+        document.getElementById("productModal");
+
+    modal.classList.add("active");
+
+    document.body.classList.add("modal-open");
+
+
+    setTimeout(initZoom,100);
+
+}
+
+
+/* =========================================================
+   PRODUCT GALLERY
+========================================================= */
+
+function renderProductGallery(product){
+
+    const mainImage =
+        document.getElementById("productMainImage");
+
+    const thumbnails =
+        document.getElementById("productThumbnails");
+
+
+    if(!mainImage || !thumbnails) return;
+
+
+    mainImage.src =
+        product.images[0];
+
+
+    thumbnails.innerHTML =
+        product.images.map(
+            (image,index) => `
+
+                <button
+                    class="thumbnail-btn ${index === 0 ? "active" : ""}"
+                    onclick="changeProductImage(${index})"
+                >
+
+                    <img
+                        src="${image}"
+                        alt="Image ${index+1}"
+                    >
+
+                </button>
+
+            `
+        ).join("");
+
+
+    initMobileSwipe();
+
+}
+
+
+/* =========================================================
+   CHANGE IMAGE
+========================================================= */
+
+function changeProductImage(index){
+
+    if(!currentProduct) return;
+
+
+    if(
+        index < 0 ||
+        index >= currentProduct.images.length
+    ){
+
+        return;
+
+    }
+
+
+    currentImageIndex = index;
+
+
+    const image =
+        document.getElementById("productMainImage");
+
+    image.src =
+        currentProduct.images[index];
+
+
+    document
+        .querySelectorAll(".thumbnail-btn")
+        .forEach(
+            (btn,i) =>
+                btn.classList.toggle(
+                    "active",
+                    i === index
+                )
+        );
+
+
+    const preview =
+        document.getElementById("zoomPreview");
+
+    if(preview){
+
+        preview.style.backgroundImage =
+            `url("${image.src}")`;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE SWIPE
+========================================================= */
+
+function initMobileSwipe(){
+
+    const box =
+        document.getElementById("zoomBox");
+
+    if(!box) return;
+
+
+    let startX = 0;
+    let startY = 0;
+
+
+    box.ontouchstart = function(event){
+
+        if(!event.touches.length) return;
+
+        startX =
+            event.touches[0].clientX;
+
+        startY =
+            event.touches[0].clientY;
+
+    };
+
+
+    box.ontouchend = function(event){
+
+        if(!event.changedTouches.length) return;
+
+
+        const endX =
+            event.changedTouches[0].clientX;
+
+        const endY =
+            event.changedTouches[0].clientY;
+
+
+        const diffX =
+            endX - startX;
+
+        const diffY =
+            endY - startY;
+
+
+        if(
+            Math.abs(diffX) > 50 &&
+            Math.abs(diffX) > Math.abs(diffY)
+        ){
+
+            if(diffX < 0){
+
+                changeProductImage(
+                    currentImageIndex + 1 >= currentProduct.images.length
+                    ? 0
+                    : currentImageIndex + 1
+                );
+
+            }else{
+
+                changeProductImage(
+                    currentImageIndex - 1 < 0
+                    ? currentProduct.images.length - 1
+                    : currentImageIndex - 1
+                );
+
+            }
+
+        }
+
+    };
+
+}
+
+
+/* =========================================================
+   ZOOM
+========================================================= */
+
+function initZoom(){
+
+    const box =
+        document.getElementById("zoomBox");
+
+    const image =
+        document.getElementById("productMainImage");
+
+    const lens =
+        document.getElementById("zoomLens");
+
+    const preview =
+        document.getElementById("zoomPreview");
+
+
+    if(!box || !image || !lens || !preview)
+        return;
+
+
+    box.onmouseenter = function(){
+
+        if(window.innerWidth <= 900)
+            return;
+
+
+        lens.style.display = "block";
+
+        preview.style.display = "block";
+
+        preview.style.backgroundImage =
+            `url("${image.src}")`;
+
+    };
+
+
+    box.onmouseleave = function(){
+
+        lens.style.display = "none";
+
+        preview.style.display = "none";
+
+    };
+
+
+    box.onmousemove = function(event){
+
+        if(window.innerWidth <= 900)
+            return;
+
+
+        const rect =
+            box.getBoundingClientRect();
+
+
+        let x =
+            event.clientX - rect.left;
+
+        let y =
+            event.clientY - rect.top;
+
+
+        const lensWidth =
+            lens.offsetWidth || 90;
+
+        const lensHeight =
+            lens.offsetHeight || 90;
+
+
+        x =
+            Math.max(
+                lensWidth / 2,
+                Math.min(
+                    x,
+                    rect.width - lensWidth / 2
+                )
+            );
+
+
+        y =
+            Math.max(
+                lensHeight / 2,
+                Math.min(
+                    y,
+                    rect.height - lensHeight / 2
+                )
+            );
+
+
+        lens.style.left =
+            (x - lensWidth / 2) + "px";
+
+
+        lens.style.top =
+            (y - lensHeight / 2) + "px";
+
+
+        const percentX =
+            (x / rect.width) * 100;
+
+
+        const percentY =
+            (y / rect.height) * 100;
+
+
+        preview.style.backgroundImage =
+            `url("${image.src}")`;
+
+        preview.style.backgroundSize =
+            "220% 220%";
+
+        preview.style.backgroundPosition =
+            `${percentX}% ${percentY}%`;
+
+    };
+
+}
+
+
+/* =========================================================
+   RELATED PRODUCTS
+========================================================= */
+
+function renderRelatedProducts(product){
+
+    const container =
+        document.getElementById("relatedProducts");
+
+    if(!container) return;
+
+
+    const related =
+        PRODUCTS
+            .filter(
+                p =>
+                    p.category === product.category &&
+                    p.id !== product.id
+            )
+            .slice(0,4);
+
+
+    container.innerHTML =
+        related.map(
+            p => `
+
+                <div
+                    class="related-product"
+                    onclick="openProduct(${p.id})"
+                >
+
+                    <img
+                        src="${p.images[0]}"
+                        alt="${escapeHTML(p.name)}"
+                    >
+
+                    <div>
+
+                        <strong>
+                            ${escapeHTML(p.name)}
+                        </strong>
+
+                        <span>
+                            ${money(p.price)}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            `
+        ).join("");
+
+}
+
+
+/* =========================================================
+   CLOSE PRODUCT
+========================================================= */
+
+function closeProductModal(){
+
+    document
+        .getElementById("productModal")
+        .classList.remove("active");
+
+    document.body.classList.remove("modal-open");
+
+}
+
+
+function closeProductModalOutside(event){
+
+    if(event.target.id === "productModal"){
+
+        closeProductModal();
+
+    }
+
+}
+
+
+/* =========================================================
+   SIZE / COLOR
+========================================================= */
+
+function selectSize(size, button){
+
+    if(currentProduct && Array.isArray(currentProduct.sizes) &&
+       !currentProduct.sizes.includes(size)){
+        return;
+    }
+
+    selectedSize = size;
+
+    document.getElementById("selectedSize").textContent =
+        size;
+
+
+    button
+        .parentElement
+        .querySelectorAll(".option-btn")
+        .forEach(
+            btn => btn.classList.remove("active")
+        );
+
+
+    button.classList.add("active");
+
+}
+
+
+function selectColor(color, button){
+
+    selectedColor = color;
+
+    document.getElementById("selectedColor").textContent =
+        color;
+
+
+    button
+        .parentElement
+        .querySelectorAll(".option-btn")
+        .forEach(
+            btn => btn.classList.remove("active")
+        );
+
+
+    button.classList.add("active");
+
+}
+
+
+/* =========================================================
+   DETAIL QUANTITY
+========================================================= */
+
+function changeDetailQuantity(change){
+
+    if(!currentProduct) return;
+
+
+    detailQuantity += change;
+
+
+    if(detailQuantity < 1)
+        detailQuantity = 1;
+
+
+    if(detailQuantity > currentProduct.stock)
+        detailQuantity = currentProduct.stock;
+
+
+    document.getElementById("detailQuantity").textContent =
+        detailQuantity;
+
+}
+
+
+/* =========================================================
+   CART
+========================================================= */
+
+function saveCart(){
+
+    localStorage.setItem(
+        "mustakim_cart",
+        JSON.stringify(cart)
+    );
+
+    updateCartCount();
+
+}
+
+
+function addToCart(id, quantity = 1, chosenSize = ""){
+
+    const product = PRODUCTS.find(p => p.id === Number(id));
+    if(!product) return;
+
+    if(product.stock <= 0){
+        showToast("❌ Productটি এখন Stock-এ নেই");
+        return;
+    }
+
+    const sizes = Array.isArray(product.sizes) ? product.sizes : [];
+    let size = chosenSize || "";
+
+    if(product.id === currentProduct?.id && selectedSize){
+        size = selectedSize;
+    }
+
+    if(sizes.length && !size){
+        openProduct(product.id);
+        showToast(product.sizeType === "shoe" ? "👟 আগে জুতার Size নির্বাচন করুন" : "📏 আগে আপনার Size নির্বাচন করুন");
+        return;
+    }
+
+    const existing = cart.find(item =>
+        item.id === product.id &&
+        String(item.size || "") === String(size || "")
+    );
+
+    if(existing){
+        existing.qty = Math.min(existing.qty + quantity, product.stock);
+    }else{
+        cart.push({
+            id: product.id,
+            qty: Math.min(quantity, product.stock),
+            size: size
+        });
+    }
+
+    saveCart();
+    showToast("🛒 " + product.name + " Cart-এ যোগ হয়েছে");
+
+}
+
+function addCurrentToCart(){
+
+    if(!currentProduct) return;
+
+
+    addToCart(
+        currentProduct.id,
+        detailQuantity,
+        selectedSize
+    );
+
+}
+
+
+function updateCartCount(){
+
+    const total =
+        cart.reduce(
+            (sum,item) =>
+                sum + Number(item.qty || 0),
+            0
+        );
+
+
+    const cartCount =
+        document.getElementById("cartCount");
+
+    if(cartCount)
+        cartCount.textContent = total;
+
+
+    const headerCount =
+        document.getElementById("cartHeaderCount");
+
+    if(headerCount)
+        headerCount.textContent =
+            `${total} Items`;
+
+}
+
+
+/* =========================================================
+   CART DRAWER
+========================================================= */
+
+function openCart(){
+
+    renderCart();
+
+    document
+        .getElementById("cartOverlay")
+        .classList.add("active");
+
+    document
+        .getElementById("cartDrawer")
+        .classList.add("active");
+
+}
+
+
+function closeCart(){
+
+    document
+        .getElementById("cartOverlay")
+        .classList.remove("active");
+
+    document
+        .getElementById("cartDrawer")
+        .classList.remove("active");
+
+}
+
+
+function renderCart(){
+
+    const container =
+        document.getElementById("cartItems");
+
+    if(!container) return;
+
+
+    if(!cart.length){
+
+        container.innerHTML = `
+
+            <div class="empty-cart">
+
+                <div style="font-size:60px;">
+                    🛒
+                </div>
+
+                <h3>
+                    আপনার Cart খালি
+                </h3>
+
+                <p>
+                    পছন্দের Product Cart-এ যোগ করুন।
+                </p>
+
+                <button
+                    class="primary-btn"
+                    onclick="closeCart();scrollToProducts()"
+                >
+                    Shopping শুরু করুন
+                </button>
+
+            </div>
+
+        `;
+
+        updateCartTotals();
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        cart.map(
+            item => {
+
+                const product =
+                    PRODUCTS.find(
+                        p => p.id === item.id
+                    );
+
+
+                if(!product)
+                    return "";
+
+
+                return `
+
+                    <div class="cart-item">
+
+                        <img
+                            src="${product.images[0]}"
+                            alt="${escapeHTML(product.name)}"
+                        >
+
+
+                        <div class="cart-item-info">
+
+                            <strong>
+                                ${escapeHTML(product.name)}
+                            </strong>
+
+                            <span class="cart-item-price">
+                                ${money(product.price)}
+                            </span>
+
+
+                            <div class="cart-item-controls">
+
+                                <button
+                                    onclick="changeCartQty(${product.id},-1)"
+                                >
+                                    −
+                                </button>
+
+                                <span class="cart-qty">
+                                    ${item.qty}
+                                </span>
+
+                                <button
+                                    onclick="changeCartQty(${product.id},1)"
+                                >
+                                    +
+                                </button>
+
+                                <button
+                                    class="remove-cart"
+                                    onclick="removeFromCart(${product.id})"
+                                >
+                                    🗑️
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+        ).join("");
+
+
+    updateCartTotals();
+
+}
+
+
+function changeCartQty(id, change){
+
+    const item =
+        cart.find(
+            x => x.id === id
+        );
+
+
+    const product =
+        PRODUCTS.find(
+            x => x.id === id
+        );
+
+
+    if(!item || !product)
+        return;
+
+
+    item.qty += change;
+
+
+    if(item.qty <= 0){
+
+        cart =
+            cart.filter(
+                x => x.id !== id
+            );
+
+    }
+
+
+    if(item.qty > product.stock){
+
+        item.qty =
+            product.stock;
+
+    }
+
+
+    saveCart();
+
+    renderCart();
+
+}
+
+
+function removeFromCart(id){
+
+    cart =
+        cart.filter(
+            item =>
+                item.id !== id
+        );
+
+
+    saveCart();
+
+    renderCart();
+
+    showToast("🗑️ Product Cart থেকে সরানো হয়েছে");
+
+}
+
+
+function getCartTotal(){
+
+    return cart.reduce(
+        (total,item) => {
+
+            const product =
+                PRODUCTS.find(
+                    p => p.id === item.id
+                );
+
+            return total +
+                (product
+                    ? product.price * item.qty
+                    : 0);
+
+        },
+        0
+    );
+
+}
+
+
+function updateCartTotals(){
+
+    const total =
+        getCartTotal();
+
+
+    const subtotal =
+        document.getElementById("cartSubtotal");
+
+    const cartTotal =
+        document.getElementById("cartTotal");
+
+
+    if(subtotal)
+        subtotal.textContent =
+            money(total);
+
+
+    if(cartTotal)
+        cartTotal.textContent =
+            money(total);
+
+}
+
+
+/* =========================================================
+   WISHLIST
+========================================================= */
+
+function saveWishlist(){
+
+    localStorage.setItem(
+        "mustakim_wishlist",
+        JSON.stringify(wishlist)
+    );
+
+    updateWishlistCount();
+
+}
+
+
+function toggleWishlist(id){
+
+    id = Number(id);
+
+
+    if(wishlist.includes(id)){
+
+        wishlist =
+            wishlist.filter(
+                x => x !== id
+            );
+
+        showToast("♡ Wishlist থেকে সরানো হয়েছে");
+
+    }else{
+
+        wishlist.push(id);
+
+        showToast("♥ Wishlist-এ যোগ হয়েছে");
+
+    }
+
+
+    saveWishlist();
+
+    renderProducts(currentProducts);
+
+    renderWishlist();
+
+
+    if(currentProduct &&
+       currentProduct.id === id){
+
+        updateDetailWishlistButton();
+
+    }
+
+}
+
+
+function toggleCurrentWishlist(){
+
+    if(!currentProduct) return;
+
+    toggleWishlist(currentProduct.id);
+
+}
+
+
+function updateWishlistCount(){
+
+    const count =
+        document.getElementById("wishlistCount");
+
+    if(count)
+        count.textContent =
+            wishlist.length;
+
+}
+
+
+function updateDetailWishlistButton(){
+
+    const btn =
+        document.getElementById("detailWishlistBtn");
+
+    if(!btn || !currentProduct)
+        return;
+
+
+    const liked =
+        wishlist.includes(
+            currentProduct.id
+        );
+
+
+    btn.textContent =
+        liked ? "♥" : "♡";
+
+
+    btn.classList.toggle(
+        "active",
+        liked
+    );
+
+}
+
+
+function openWishlist(){
+
+    renderWishlist();
+
+
+    document
+        .getElementById("wishlistModal")
+        .classList.add("active");
+
+    document.body.classList.add("modal-open");
+
+}
+
+
+function closeWishlist(){
+
+    document
+        .getElementById("wishlistModal")
+        .classList.remove("active");
+
+    document.body.classList.remove("modal-open");
+
+}
+
+
+function closeWishlistOutside(event){
+
+    if(event.target.id === "wishlistModal"){
+
+        closeWishlist();
+
+    }
+
+}
+
+
+function renderWishlist(){
+
+    const container =
+        document.getElementById("wishlistGrid");
+
+    if(!container) return;
+
+
+    const items =
+        PRODUCTS.filter(
+            product =>
+                wishlist.includes(product.id)
+        );
+
+
+    if(!items.length){
+
+        container.innerHTML = `
+
+            <div class="empty-cart">
+
+                <div style="font-size:60px;">
+                    ♡
+                </div>
+
+                <h3>
+                    Wishlist খালি
+                </h3>
+
+                <p>
+                    পছন্দের Product-এ ♥ চাপুন।
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        items.map(productCard).join("");
+
+}
+
+
+/* =========================================================
+   BUY NOW
+========================================================= */
+
+function buyCurrentProduct(){
+
+    if(!currentProduct)
+        return;
+
+    if(Array.isArray(currentProduct.sizes) &&
+       currentProduct.sizes.length && !selectedSize){
+        showToast("📏 দয়া করে আগে আপনার Size নির্বাচন করুন");
+        return;
+    }
+
+    openOrderModal([
+        {
+            id: currentProduct.id,
+            qty: detailQuantity,
+            size: selectedSize,
+            color: selectedColor
+        }
+    ]);
+
+
+    closeProductModal();
+
+}
+
+
+/* =========================================================
+   CART ORDER
+========================================================= */
+
+function openCartOrder(){
+
+    if(!cart.length){
+
+        showToast("🛒 Cart খালি");
+
+        return;
+
+    }
+
+
+    openOrderModal(
+        cart.map(
+            item => ({
+                id: item.id,
+                qty: item.qty,
+                size: item.size || "",
+                color: item.color || ""
+            })
+        )
+    );
+
+
+    closeCart();
+
+}
+
+
+/* =========================================================
+   ORDER MODAL
+========================================================= */
+
+function openOrderModal(items){
+
+    orderItems =
+        items.map(
+            item => ({...item})
+        );
+
+
+    renderOrderPreview();
+
+
+    document
+        .getElementById("orderModal")
+        .classList.add("active");
+
+    document.body.classList.add("modal-open");
+
+}
+
+
+function renderOrderPreview(){
+
+    const container =
+        document.getElementById("orderPreview");
+
+    if(!container)
+        return;
+
+    let total = 0;
+
+    container.innerHTML =
+        orderItems.map(
+            (item,index) => {
+
+                const product =
+                    PRODUCTS.find(
+                        p => p.id === item.id
+                    );
+
+                if(!product)
+                    return "";
+
+                const lineTotal =
+                    product.price *
+                    item.qty;
+
+                total += lineTotal;
+
+                const sizes = Array.isArray(product.sizes)
+                    ? product.sizes
+                    : [];
+
+                const sizeRequired = sizes.length > 0;
+                const selected = item.size || "";
+
+                return `
+
+                    <div class="order-preview-item">
+
+                        <img
+                            src="${product.images[0]}"
+                            alt="${escapeHTML(product.name)}"
+                        >
+
+                        <div class="order-preview-info">
+
+                            <strong>
+                                ${escapeHTML(product.name)}
+                            </strong>
+
+                            <span>
+                                ${item.qty} ×
+                                ${money(product.price)}
+                            </span>
+
+                            ${sizeRequired ? `
+                                <div class="order-size-box">
+                                    <label>
+                                        📏 Size নির্বাচন করুন <b>*</b>
+                                    </label>
+
+                                    <div class="order-size-buttons">
+                                        ${sizes.map(size => `
+                                            <button
+                                                type="button"
+                                                class="order-size-btn ${selected === size ? "active" : ""}"
+                                                onclick="selectOrderSize(${index}, '${escapeHTML(size)}', this)"
+                                            >
+                                                ${escapeHTML(size)}
+                                            </button>
+                                        `).join("")}
+                                    </div>
+
+                                    <small id="orderSizeText-${index}">
+                                        ${selected ? `Selected Size: ${escapeHTML(selected)}` : "⚠️ আপনার Size নির্বাচন করুন"}
+                                    </small>
+                                </div>
+                            ` : `
+                                <small class="no-size-needed">
+                                    Size প্রযোজ্য নয়
+                                </small>
+                            `}
+
+                        </div>
+
+                        <b>
+                            ${money(lineTotal)}
+                        </b>
+
+                    </div>
+
+                `;
+
+            }
+        ).join("");
+
+    document.getElementById("orderTotal").textContent =
+        money(total);
+
+}
+
+
+function selectOrderSize(index, size, button){
+
+    if(!orderItems[index])
+        return;
+
+    orderItems[index].size = size;
+
+    const box = button.closest(".order-size-buttons");
+
+    if(box){
+        box.querySelectorAll(".order-size-btn")
+            .forEach(btn => btn.classList.remove("active"));
+    }
+
+    button.classList.add("active");
+
+    const text =
+        document.getElementById(`orderSizeText-${index}`);
+
+    if(text){
+        text.textContent =
+            `Selected Size: ${size}`;
+    }
+
+}
+
+
+function validateOrderSizes(){
+
+    for(const item of orderItems){
+
+        const product =
+            PRODUCTS.find(p => p.id === item.id);
+
+        if(!product)
+            continue;
+
+        const sizes = Array.isArray(product.sizes)
+            ? product.sizes
+            : [];
+
+        if(sizes.length && !item.size){
+
+            showToast(
+                `📏 ${product.name} — দয়া করে Size নির্বাচন করুন`
+            );
+
+            return false;
+        }
+    }
+
+    return true;
+
+}
+
+
+function closeOrderModal(){
+
+    document
+        .getElementById("orderModal")
+        .classList.remove("active");
+
+    document.body.classList.remove("modal-open");
+
+}
+
+
+function closeOrderOutside(event){
+
+    if(event.target.id === "orderModal"){
+
+        closeOrderModal();
+
+    }
+
+}
+
+
+/* =========================================================
+   SUBMIT WHATSAPP ORDER
+========================================================= */
+
+function submitOrder(event){
+
+    event.preventDefault();
+
+
+    if(!orderItems.length){
+
+        showToast("❌ কোনো Product নির্বাচন করা হয়নি");
+
+        return;
+
+    }
+
+    if(!validateOrderSizes()){
+        return;
+    }
+
+
+    const name =
+        document.getElementById("orderName").value.trim();
+
+    const phone =
+        document.getElementById("orderPhone").value.trim();
+
+    const district =
+        document.getElementById("orderDistrict").value.trim();
+
+    const thana =
+        document.getElementById("orderThana").value.trim();
+
+    const village =
+        document.getElementById("orderVillage").value.trim();
+
+    const address =
+        document.getElementById("orderAddress").value.trim();
+
+
+    let total = 0;
+
+
+    const productText =
+        orderItems.map(
+            (item,index) => {
+
+                const product =
+                    PRODUCTS.find(
+                        p => p.id === item.id
+                    );
+
+
+                if(!product)
+                    return "";
+
+
+                const itemTotal =
+                    product.price *
+                    item.qty;
+
+
+                total += itemTotal;
+
+
+                return (
+                    `${index+1}. ${product.name}\n` +
+                    `   Qty: ${item.qty}\n` +
+                    (item.size
+                        ? `   Size: ${item.size}\n`
+                        : "") +
+                    (item.color
+                        ? `   Color: ${item.color}\n`
+                        : "") +
+                    `   Price: ${money(item.price)}\n` +
+                    `   Total: ${money(itemTotal)}`
+                );
+
+            }
+        ).join("\n\n");
+
+
+    const message =
+`🛍️ *MUSTAKIM SHOP — NEW ORDER*
+
+━━━━━━━━━━━━━━━━━━
+
+📦 *PRODUCT ORDER*
+
+${productText}
+
+━━━━━━━━━━━━━━━━━━
+
+💰 *TOTAL: ${money(total)}*
+
+━━━━━━━━━━━━━━━━━━
+
+👤 *CUSTOMER INFORMATION*
+
+নাম: ${name}
+মোবাইল: ${phone}
+
+🏠 জেলা: ${district}
+📍 থানা/উপজেলা: ${thana}
+🏡 গ্রাম/এলাকা: ${village}
+
+📝 সম্পূর্ণ ঠিকানা:
+${address}
+
+━━━━━━━━━━━━━━━━━━
+
+💳 Payment:
+bKash / Nagad — 01786938377
+
+❤️ Mustakim Shop`;
+
+
+    const whatsappURL =
+        "https://wa.me/" +
+        SHOP_WHATSAPP +
+        "?text=" +
+        encodeURIComponent(message);
+
+
+    window.open(
+        whatsappURL,
+        "_blank"
+    );
+
+
+    showToast(
+        "✅ WhatsApp Order প্রস্তুত হয়েছে"
+    );
+
+}
+
+
+/* =========================================================
+   HERO SLIDER
+========================================================= */
+
+function renderHeroSlider(){
+
+    const container =
+        document.getElementById("heroProductSlider");
+
+    if(!container) return;
+
+
+    const slides =
+        PRODUCTS.slice(0,5);
+
+
+    container.innerHTML = `
+
+        ${slides.map(
+            (product,index) => `
+
+                <div
+                    class="hero-product-slide ${index === 0 ? "active" : ""}"
+                    onclick="openProduct(${product.id})"
+                >
+
+                    <div class="hero-slide-image">
+
+                        <img
+                            src="${product.images[0]}"
+                            alt="${escapeHTML(product.name)}"
+                        >
+
+                    </div>
+
+
+                    <div class="hero-product-info">
+
+                        <span>
+                            ${product.badge || "Featured"}
+                        </span>
+
+                        <h3>
+                            ${escapeHTML(product.name)}
+                        </h3>
+
+                        <strong>
+                            ${money(product.price)}
+                        </strong>
+
+                        <small>
+                            ${product.discount}% OFF
+                        </small>
+
+                    </div>
+
+                </div>
+
+            `
+        ).join("")}
+
+
+        <div class="hero-slider-dots">
+
+            ${slides.map(
+                (_,index) => `
+
+                    <button
+                        class="${index === 0 ? "active" : ""}"
+                        onclick="event.stopPropagation();heroGoToSlide(${index})"
+                    ></button>
+
+                `
+            ).join("")}
+
+        </div>
+
+    `;
+
+
+    heroCurrentSlide = 0;
+
+}
+
+
+function heroGoToSlide(index){
+
+    const slides =
+        document.querySelectorAll(
+            ".hero-product-slide"
+        );
+
+    const dots =
+        document.querySelectorAll(
+            ".hero-slider-dots button"
+        );
+
+
+    if(!slides.length)
+        return;
+
+
+    if(index >= slides.length)
+        index = 0;
+
+    if(index < 0)
+        index = slides.length - 1;
+
+
+    slides.forEach(
+        slide =>
+            slide.classList.remove("active")
+    );
+
+
+    dots.forEach(
+        dot =>
+            dot.classList.remove("active")
+    );
+
+
+    heroCurrentSlide = index;
+
+
+    slides[index]
+        ?.classList.add("active");
+
+
+    dots[index]
+        ?.classList.add("active");
+
+}
+
+
+setInterval(
+    function(){
+
+        const slides =
+            document.querySelectorAll(
+                ".hero-product-slide"
+            );
+
+
+        if(!slides.length)
+            return;
+
+
+        heroCurrentSlide++;
+
+
+        if(
+            heroCurrentSlide >=
+            slides.length
+        ){
+
+            heroCurrentSlide = 0;
+
+        }
+
+
+        heroGoToSlide(
+            heroCurrentSlide
+        );
+
+    },
+    4000
+);
+
+
+/* =========================================================
+   FLASH SALE
+========================================================= */
+
+function renderFlashProducts(){
+
+    const container =
+        document.getElementById("flashProducts");
+
+    if(!container) return;
+
+
+    const products =
+        [...PRODUCTS]
+            .sort(
+                (a,b) =>
+                    b.discount - a.discount
+            )
+            .slice(0,5);
+
+
+    container.innerHTML =
+        products
+            .map(productCard)
+            .join("");
+
+}
+
+
+/* =========================================================
+   LANGUAGE
+========================================================= */
+
+function setLanguage(lang, button){
+
+    document
+        .querySelectorAll(".language-btn")
+        .forEach(
+            btn =>
+                btn.classList.remove("active")
+        );
+
+
+    if(button)
+        button.classList.add("active");
+
+
+    document
+        .querySelectorAll("[data-bn]")
+        .forEach(element => {
+
+            element.textContent =
+                lang === "bn"
+                ? element.dataset.bn
+                : element.dataset.en;
+
+        });
+
+
+    localStorage.setItem(
+        "mustakim_language",
+        lang
+    );
+
+}
+
+
+function loadLanguage(){
+
+    const lang =
+        localStorage.getItem(
+            "mustakim_language"
+        ) || "bn";
+
+
+    const button =
+        [...document.querySelectorAll(".language-btn")]
+            .find(
+                btn =>
+                    btn.textContent
+                        .toLowerCase()
+                        .includes(
+                            lang === "bn"
+                            ? "বাংলা"
+                            : "english"
+                        )
+            );
+
+
+    setLanguage(
+        lang,
+        button
+    );
+
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+function toggleMenu(){
+
+    const nav =
+        document.getElementById("mobileNav");
+
+    if(nav){
+
+        nav.classList.toggle("active");
+
+    }
+
+}
+
+
+function closeMobileMenu(){
+
+    const nav =
+        document.getElementById("mobileNav");
+
+    if(nav){
+
+        nav.classList.remove("active");
+
+    }
+
+}
+
+
+/* =========================================================
+   SCROLL
+========================================================= */
+
+function scrollToProducts(){
+
+    document
+        .getElementById("products")
+        ?.scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer;
+
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    if(!toast) return;
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add("show");
+
+
+    clearTimeout(toastTimer);
+
+
+    toastTimer =
+        setTimeout(
+            () => {
+
+                toast.classList.remove("show");
+
+            },
+            2600
+        );
+
+}
+
+
+
+/* ================= FIREBASE PRODUCT MANAGER LOGIC ================= */
+let adminLoggedIn = false;
+let firebaseProducts = [];
+let firebaseReady = false;
+
+function adminEsc(value){
+  return String(value ?? "").replace(/[&<>'"]/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':'&quot;'}[m]));
+}
+
+function openAdminPanel(){
+  document.getElementById("adminModal")?.classList.add("active");
+  document.getElementById("adminModal")?.setAttribute("aria-hidden","false");
+}
+function closeAdminPanel(){
+  document.getElementById("adminModal")?.classList.remove("active");
+  document.getElementById("adminModal")?.setAttribute("aria-hidden","true");
+}
+
+function showAdminError(message){
+  const box=document.getElementById("adminLoginError");
+  if(!box) return;
+  box.textContent=message;
+  box.style.display="block";
+}
+function clearAdminError(){
+  const box=document.getElementById("adminLoginError");
+  if(box){box.textContent="";box.style.display="none";}
+}
+function setAdminStatus(message, ok=false){
+  const box=document.getElementById("adminFirebaseStatus");
+  if(box){box.textContent=message;box.style.color=ok?"#18794e":"";}
+}
+
+async function adminLogin(){
+  clearAdminError();
+  if(!firebaseReady){
+    showAdminError("Firebase এখনো configure করা হয়নি। index.html-এর Firebase Configuration বসান।");
+    return;
+  }
+  const email=document.getElementById("adminEmail")?.value.trim();
+  const password=document.getElementById("adminPassword")?.value;
+  if(!email || !password){showAdminError("Email এবং Password দিন।");return;}
+  try{
+    await window.__msAuthPersistencePromise;
+    await window.__msSignIn(email,password);
+    setAdminStatus("☁️ Owner login successful",true);
+  }catch(error){
+    console.error(error);
+    showAdminError("Login হয়নি। Email/Password অথবা Firebase Authentication setup পরীক্ষা করুন।");
+  }
+}
+
+async function adminLogout(){
+  try{await window.__msSignOut();}catch(error){console.error(error);}
+}
+
+function updateAdminSizeUI(selectedSizes=[]){
+  const cat=document.getElementById("adminCategory")?.value;
+  const area=document.getElementById("adminSizeArea");
+  if(!area)return;
+  const selected=Array.isArray(selectedSizes)?selectedSizes.join(", "):"";
+  if(cat==="shoes") area.innerHTML='<input id="adminSizes" placeholder="39, 40, 41, 42, 43, 44" value="'+adminEsc(selected || "39, 40, 41, 42, 43, 44")+'">';
+  else if(["women","men","kids"].includes(cat)) area.innerHTML='<input id="adminSizes" placeholder="S, M, L, XL, XXL" value="'+adminEsc(selected || "S, M, L, XL, XXL")+'">';
+  else area.innerHTML='<input id="adminSizes" value="" placeholder="এই Product-এ Size লাগবে না">';
+}
+
+function resetAdminForm(){
+  document.getElementById("adminProductForm")?.reset();
+  document.getElementById("adminProductId").value="";
+  document.getElementById("adminExistingImages").value="";
+  document.getElementById("adminExistingStoragePaths").value="";
+  const files=document.getElementById("adminImageFiles"); if(files) files.value="";
+  document.getElementById("adminUploadStatus").style.display="none";
+  const btn=document.getElementById("adminSaveBtn"); if(btn) {btn.disabled=false;btn.textContent="☁️ Publish Product";}
+  updateAdminSizeUI();
+}
+
+function setUploadStatus(message){
+  const box=document.getElementById("adminUploadStatus");
+  if(box){box.textContent=message;box.style.display="block";}
+}
+
+async function uploadSelectedImages(productId, files){
+  if(!files.length) return {images:[], storagePaths:[]};
+  if(files.length>5) throw new Error("সর্বোচ্চ ৫টি ছবি নির্বাচন করতে পারবেন।");
+  const images=[]; const storagePaths=[];
+  for(let i=0;i<files.length;i++){
+    const file=files[i];
+    if(!file.type.startsWith("image/")) throw new Error("শুধু image file ব্যবহার করুন।");
+    if(file.size > 8*1024*1024) throw new Error("প্রতি ছবির সর্বোচ্চ size 8MB।");
+    setUploadStatus(`📤 ছবি ${i+1}/${files.length} Upload হচ্ছে...`);
+    const cleanName=(file.name||`image-${i+1}`).replace(/[^a-zA-Z0-9._-]/g,"-");
+    const path=`products/${productId}/${Date.now()}_${i}_${cleanName}`;
+    const ref=window.__msStorageRef(path);
+    await window.__msUploadBytes(ref,file,{contentType:file.type,cacheControl:"public,max-age=31536000"});
+    images.push(await window.__msGetDownloadURL(ref));
+    storagePaths.push(path);
+  }
+  return {images,storagePaths};
+}
+
+async function saveAdminProduct(event){
+  event.preventDefault();
+  if(!adminLoggedIn || !firebaseReady){showToast?.("🔐 আগে Owner Login করুন");return;}
+  const btn=document.getElementById("adminSaveBtn");
+  try{
+    btn.disabled=true; btn.textContent="⏳ Publishing...";
+    const idInput=document.getElementById("adminProductId").value.trim();
+    const id=idInput ? idInput : String(Date.now());
+    const category=document.getElementById("adminCategory").value;
+    const sizes=(document.getElementById("adminSizes")?.value||"").split(",").map(x=>x.trim()).filter(Boolean);
+    const oldImages=JSON.parse(document.getElementById("adminExistingImages").value||"[]");
+    const oldPaths=JSON.parse(document.getElementById("adminExistingStoragePaths").value||"[]");
+    const selectedFiles=Array.from(document.getElementById("adminImageFiles")?.files||[]);
+    let uploaded={images:[],storagePaths:[]};
+    if(selectedFiles.length) uploaded=await uploadSelectedImages(id,selectedFiles);
+    const images=uploaded.images.length?uploaded.images:oldImages;
+    const storagePaths=uploaded.storagePaths.length?uploaded.storagePaths:oldPaths;
+    if(!images.length){throw new Error("কমপক্ষে ১টি Product image নির্বাচন করুন।");}
+    const oldPrice=Number(document.getElementById("adminOldPrice").value)||0;
+    const price=Number(document.getElementById("adminPrice").value)||0;
+    const product={
+      id, category,
+      name:document.getElementById("adminName").value.trim(),
+      price, oldPrice,
+      discount:oldPrice>price&&oldPrice?Math.round((1-price/oldPrice)*100):0,
+      rating:Number(document.getElementById("adminRating").value)||5,
+      reviews:0,
+      badge:document.getElementById("adminBadge").value.trim(),
+      stock:Number(document.getElementById("adminStock").value)||0,
+      location:document.getElementById("adminLocation").value.trim(),
+      images, storagePaths,
+      description:document.getElementById("adminDescription").value.trim(),
+      sizes,
+      sizeType:category==="shoes"?"shoe":(["women","men","kids"].includes(category)?"clothing":"none"),
+      searchTerms:document.getElementById("adminSearchTerms").value.split(",").map(x=>x.trim()).filter(Boolean),
+      published:true,
+      ownerUid:window.__msCurrentUser?.uid || "",
+      updatedAt:window.__msServerTimestamp(),
+      createdAt: idInput ? undefined : window.__msServerTimestamp()
+    };
+    Object.keys(product).forEach(k=>product[k]===undefined&&delete product[k]);
+    await window.__msSetProduct(id,product);
+    setUploadStatus("✅ Product Firebase-এ Publish হয়েছে। এখন সবাই দেখতে পাবে।");
+    renderAdminProductList();
+    resetAdminForm();
+    showToast?.("✅ Product published publicly");
+  }catch(error){
+    console.error(error);
+    setUploadStatus("❌ "+(error?.message||"Product publish করা যায়নি।"));
+  }finally{
+    btn.disabled=false; btn.textContent="☁️ Publish Product";
+  }
+}
+
+function editAdminProduct(id){
+  const p=firebaseProducts.find(x=>String(x.id)===String(id));
+  if(!p)return;
+  document.getElementById("adminProductId").value=p.id;
+  document.getElementById("adminExistingImages").value=JSON.stringify(p.images||[]);
+  document.getElementById("adminExistingStoragePaths").value=JSON.stringify(p.storagePaths||[]);
+  document.getElementById("adminName").value=p.name||"";
+  document.getElementById("adminCategory").value=p.category||"women";
+  updateAdminSizeUI(p.sizes||[]);
+  document.getElementById("adminPrice").value=p.price||0;
+  document.getElementById("adminOldPrice").value=p.oldPrice||0;
+  document.getElementById("adminStock").value=p.stock??0;
+  document.getElementById("adminRating").value=p.rating??5;
+  document.getElementById("adminLocation").value=p.location||"";
+  document.getElementById("adminBadge").value=p.badge||"";
+  document.getElementById("adminSearchTerms").value=(p.searchTerms||[]).join(", ");
+  document.getElementById("adminDescription").value=p.description||"";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+async function deleteAdminProduct(id){
+  if(!adminLoggedIn || !firebaseReady)return;
+  const p=firebaseProducts.find(x=>String(x.id)===String(id));
+  if(!confirm(`“${p?.name||"এই Product"}” Delete করবেন?`))return;
+  try{
+    await window.__msDeleteProduct(String(id));
+    // Best-effort image cleanup. Product will already disappear even if old image cleanup fails.
+    for(const path of (p?.storagePaths||[])){
+      try{await window.__msDeleteStorageFile(path);}catch(e){console.warn("Image cleanup skipped",e);}
+    }
+    showToast?.("🗑️ Product deleted permanently");
+  }catch(error){
+    console.error(error);
+    showToast?.("❌ Product delete করা যায়নি");
+  }
+}
+
+function renderAdminProductList(){
+  const box=document.getElementById("adminProductList");
+  if(!box||!adminLoggedIn)return;
+  const list=[...firebaseProducts].sort((a,b)=>Number(b.id)-Number(a.id));
+  if(!list.length){box.innerHTML='<p style="color:#777;font-size:12px">এখনো কোনো Firebase Product Publish করা হয়নি।</p>';return;}
+  box.innerHTML=list.map(p=>`<div class="admin-product-row">
+    <img src="${adminEsc(p.images?.[0]||"")}" alt="">
+    <div class="admin-product-info"><strong>${adminEsc(p.name)}</strong><small>৳${Number(p.price||0).toLocaleString()} · ${adminEsc(p.category||"")}</small></div>
+    <div class="admin-product-actions"><button class="admin-edit" onclick="editAdminProduct('${adminEsc(p.id)}')">Edit</button><button class="admin-remove" onclick="deleteAdminProduct('${adminEsc(p.id)}')">Delete</button></div>
+  </div>`).join("");
+}
+
+function mergeFirebaseProducts(liveProducts){
+  firebaseProducts=Array.isArray(liveProducts)?liveProducts:[];
+  const map=new Map();
+  PRODUCTS.forEach(p=>map.set(String(p.id),p));
+  firebaseProducts.forEach(p=>map.set(String(p.id),p));
+  const merged=[...map.values()];
+  PRODUCTS.splice(0,PRODUCTS.length,...merged);
+  if(typeof currentProducts!=="undefined") currentProducts=[...PRODUCTS];
+  renderProducts(PRODUCTS);
+  if(typeof renderFlashProducts==='function')renderFlashProducts();
+  if(typeof updateProductCount==='function')updateProductCount();
+  renderAdminProductList();
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+  const cat=document.getElementById("adminCategory");
+  cat?.addEventListener("change",()=>updateAdminSizeUI());
+  updateAdminSizeUI();
+});
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        /* Product অবশ্যই render হবে */
+        renderProducts(PRODUCTS);
+
+        /* Hero slider */
+        renderHeroSlider();
+
+        /* Flash Sale */
+        renderFlashProducts();
+
+        /* Cart */
+        updateCartCount();
+        updateCartTotals();
+
+        /* Wishlist */
+        updateWishlistCount();
+
+        /* Language */
+        loadLanguage();
+
+        /* Year */
+        const year =
+            document.getElementById("currentYear");
+
+        if(year){
+
+            year.textContent =
+                new Date().getFullYear();
+
+        }
+
+
+        /* Hero product count */
+        const heroCount =
+            document.getElementById(
+                "heroProductCount"
+            );
+
+        if(heroCount){
+
+            heroCount.textContent =
+                PRODUCTS.length + "+";
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   ESC KEY
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key !== "Escape")
+            return;
+
+
+        closeProductModal();
+        closeWishlist();
+        closeOrderModal();
+        closeCart();
+
+    }
+);
+
+
+/* =========================================================
+   PREVENT BODY SCROLL WHEN MODAL OPEN
+========================================================= */
+
+const originalBodyOverflow =
+    document.body.style.overflow;
+
+
+document.addEventListener(
+    "click",
+    function(){
+
+        const modalOpen =
+            document.querySelector(
+                ".modal-overlay.active"
+            );
+
+
+        if(modalOpen){
+
+            document.body.style.overflow =
+                "hidden";
+
+        }else{
+
+            document.body.style.overflow =
+                originalBodyOverflow;
+
+        }
+
+    }
+);
+
+
+// Firebase + owner shortcut are initialized after this classic script.
+
+</script>
+
+
+<script type="module">
+  import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+  import { getAuth, setPersistence, browserLocalPersistence, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+  import { getFirestore, collection, query, where, onSnapshot, doc, setDoc, deleteDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+  import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-storage.js";
+
+  /* =========================================================
+     FIREBASE CONFIGURATION
+     Firebase Console → Project settings → Your apps → Web app
+     এই object-এর values আপনার Firebase config দিয়ে replace করুন।
+  ========================================================= */
+  const firebaseConfig = {
+    apiKey: "AIzaSyD--VZYyvMI3zTRuuiSFlHPAyXMDufa-gA",
+    authDomain: "mustakim-shop-website.firebaseapp.com",
+    projectId: "mustakim-shop-website",
+    storageBucket: "mustakim-shop-website.firebasestorage.app",
+    messagingSenderId: "105756738917",
+    appId: "1:105756738917:web:d11146a7286e2a18360d8c"
+  };
+
+  /* Security Rules-এও এই same owner email ব্যবহার করুন। */
+  const OWNER_EMAIL_FOR_RULES = "mdmustakimcom206@gmail.com";
+
+  const configured = Object.values(firebaseConfig).every(v => v && !String(v).includes("PASTE_YOUR_"));
+  let app=null, auth=null, db=null, storage=null;
+
+  if(configured){
+    try{
+      app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
+      auth = getAuth(app);
+      db = getFirestore(app);
+      storage = getStorage(app);
+      window.__msAuthPersistencePromise = setPersistence(auth,browserLocalPersistence);
+      window.__msStorageRef = (path)=>ref(storage,path);
+      window.__msUploadBytes = uploadBytes;
+      window.__msGetDownloadURL = getDownloadURL;
+      window.__msDeleteStorageFile = (path)=>deleteObject(ref(storage,path));
+      window.__msServerTimestamp = serverTimestamp;
+      window.__msSignIn = (email,password)=>signInWithEmailAndPassword(auth,email,password);
+      window.__msSignOut = ()=>signOut(auth);
+      window.__msCurrentUser = null;
+      window.__msSetProduct = (id,data)=>setDoc(doc(db,"products",String(id)),data,{merge:true});
+      window.__msDeleteProduct = (id)=>deleteDoc(doc(db,"products",String(id)));
+      firebaseReady = true;
+      setAdminStatus("☁️ Firebase connected — public product database ready",true);
+
+      onAuthStateChanged(auth,user=>{
+        if(user && OWNER_EMAIL_FOR_RULES && !OWNER_EMAIL_FOR_RULES.startsWith("PASTE_YOUR_") && user.email?.toLowerCase() !== OWNER_EMAIL_FOR_RULES.toLowerCase()){
+          signOut(auth);
+          showAdminError("এই Account Owner নয়। শুধু Owner Firebase account দিয়ে Login করুন।");
+          return;
+        }
+        window.__msCurrentUser=user||null;
+        adminLoggedIn=!!user;
+        const login=document.getElementById("adminLoginView");
+        const panel=document.getElementById("adminAppView");
+        if(user){
+          if(login)login.style.display="none";
+          if(panel)panel.style.display="block";
+          renderAdminProductList();
+          updateAdminSizeUI();
+          setAdminStatus(`✅ Owner logged in: ${user.email}`,true);
+        }else{
+          if(login)login.style.display="block";
+          if(panel)panel.style.display="none";
+          adminLoggedIn=false;
+        }
+      });
+
+      onSnapshot(query(collection(db,"products"),where("published","==",true)),snapshot=>{
+        const live=snapshot.docs.map(d=>({id:d.id,...d.data()})).filter(p=>p.published!==false);
+        mergeFirebaseProducts(live);
+      },error=>{
+        console.error("Firestore products listener:",error);
+        setAdminStatus("⚠️ Firebase connected, but Products read হচ্ছে না। Firestore Rules/check setup করুন।");
+      });
+    }catch(error){
+      console.error("Firebase init error",error);
+      setAdminStatus("❌ Firebase configuration error");
+    }
+  }else{
+    console.warn("Firebase not configured yet. Replace firebaseConfig values in index.html.");
+    setAdminStatus("⚠️ Firebase setup বাকি — index.html-এ Firebase config বসান।");
+  }
+
+  /* Owner-only shortcuts. Ctrl+Shift+A conflicts with Chrome in some versions. */
+  document.addEventListener("keydown",e=>{
+    const key=e.key.toLowerCase();
+    if((e.altKey && e.shiftKey && key==="a") || (e.ctrlKey && e.altKey && key==="a")){
+      e.preventDefault();
+      openAdminPanel();
+      setTimeout(()=>document.getElementById("adminEmail")?.focus(),80);
+    }
+  });
+</script>
+
+</body>
+</html>
